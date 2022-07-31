@@ -41,7 +41,7 @@ class SendEmail extends Notification
      */
     public function toMail($notifiable)
     {
-        $url = 'http://127.0.0.1:8000/generate-pdf/' . $this->invoice_id;
+        $url = 'http://invoicesali.herokuapp.com/generate-pdf/' . $this->invoice_id;
 
         return (new MailMessage)
             ->subject('اصدار فاتورة')

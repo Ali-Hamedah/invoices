@@ -32,7 +32,7 @@
 </body>
 </html>
 
-//كود اجاكس لعمل ريفرش للاشعارات
+{{--كود اجاكس لعمل ريفرش للاشعارات--}}
 <script>
     setInterval(function () {
         $("#notifications_count").load(window.location.href + " #notifications_count");
