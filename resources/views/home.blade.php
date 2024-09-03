@@ -63,11 +63,9 @@
 											<i class="fas fa-arrow-circle-down text-white"></i>
 											<span
                                                 class="text-white op-7">
-<<<<<<< HEAD
+
                                                 {{-- {{round(App\invoices::where('Value_Status',2)->count()/App\invoices::count()* 100)}} --}}
-=======
-                                                {{round(App\invoices::where('Value_Status',2)->count()/App\invoices::count()* 100)}}
->>>>>>> 7e0ddb4f32c74fc92e0f4218c2f0026ec14d2bab
+
                                             </span>
 										</span>
                         </div>
@@ -92,11 +90,9 @@
                             <span class="float-right my-auto mr-auto">
 											<i class="fas fa-arrow-circle-up text-white"></i>
 											<span
-<<<<<<< HEAD
+
                                                 {{-- class="text-white op-7">{{round(App\invoices::where('Value_Status',1)->count()/App\invoices::count()* 100)}}</span> --}}
-=======
-                                                class="text-white op-7">{{round(App\invoices::where('Value_Status',1)->count()/App\invoices::count()* 100)}}</span>
->>>>>>> 7e0ddb4f32c74fc92e0f4218c2f0026ec14d2bab
+
 										</span>
                         </div>
                     </div>
@@ -115,7 +111,7 @@
                             <div class="">
                                 <h4 class="tx-20 font-weight-bold mb-1 text-white">{{number_format(\App\invoices::where('Value_Status',3)->sum('Total'), 2)}}</h4>
                                 <p class="mb-0 tx-12 text-white op-7"> عدد
-                                    5الفواتير {{App\invoices::where('Value_Status',3)->count()}}</p>
+                                    الفواتير {{App\invoices::where('Value_Status',3)->count()}}</p>
                             </div>
                             <span class="float-right my-auto mr-auto">
 											<i class="fas fa-arrow-circle-down text-white"></i>
