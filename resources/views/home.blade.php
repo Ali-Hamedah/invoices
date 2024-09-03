@@ -4,9 +4,9 @@
 @endsection
 @section('css')
     <!--  Owl-carousel css-->
-    <link href="{{URL::asset('assets/plugins/owl-carousel/owl.carousel.css')}}" rel="stylesheet"/>
+    <link href="{{ URL::asset('assets/plugins/owl-carousel/owl.carousel.css') }}" rel="stylesheet" />
     <!-- Maps css -->
-    <link href="{{URL::asset('assets/plugins/jqvmap/jqvmap.min.css')}}" rel="stylesheet">
+    <link href="{{ URL::asset('assets/plugins/jqvmap/jqvmap.min.css') }}" rel="stylesheet">
 @endsection
 @section('page-header')
     <!-- breadcrumb -->
@@ -33,13 +33,14 @@
                     <div class="pb-0 mt-0">
                         <div class="d-flex">
                             <div class="">
-                                <h4 class="tx-20 font-weight-bold mb-1 text-white">{{number_format(\App\invoices::sum('Total'), 2)}}</h4>
-                                <p class="mb-0 tx-12 text-white op-7"> عدد الفواتير {{App\invoices::count()}}</p>
+                                <h4 class="tx-20 font-weight-bold mb-1 text-white">
+                                    {{ number_format(\App\invoices::sum('Total'), 2) }}</h4>
+                                <p class="mb-0 tx-12 text-white op-7"> عدد الفواتير {{ App\invoices::count() }}</p>
                             </div>
                             <span class="float-right my-auto mr-auto">
-											<i class="fas fa-arrow-circle-up text-white"></i>
-											<span class="text-white op-7"> 100%</span>
-										</span>
+                                <i class="fas fa-arrow-circle-up text-white"></i>
+                                <span class="text-white op-7"> 100%</span>
+                            </span>
                         </div>
                     </div>
                 </div>
@@ -55,19 +56,19 @@
                     <div class="pb-0 mt-0">
                         <div class="d-flex">
                             <div class="">
-                                <h4 class="tx-20 font-weight-bold mb-1 text-white">{{number_format(\App\invoices::where('Value_Status',2)->sum('Total'), 2)}}</h4>
+                                <h4 class="tx-20 font-weight-bold mb-1 text-white">
+                                    {{ number_format(\App\invoices::where('Value_Status', 2)->sum('Total'), 2) }}</h4>
                                 <p class="mb-0 tx-12 text-white op-7"> عدد
-                                    الفواتير {{App\invoices::where('Value_Status',2)->count()}}</p>
+                                    الفواتير {{ App\invoices::where('Value_Status', 2)->count() }}</p>
                             </div>
                             <span class="float-right my-auto mr-auto">
-											<i class="fas fa-arrow-circle-down text-white"></i>
-											<span
-                                                class="text-white op-7">
+                                <i class="fas fa-arrow-circle-down text-white"></i>
+                                <span class="text-white op-7">
 
-                                                {{-- {{round(App\invoices::where('Value_Status',2)->count()/App\invoices::count()* 100)}} --}}
+                                    {{-- {{round(App\invoices::where('Value_Status',2)->count()/App\invoices::count()* 100)}} --}}
 
-                                            </span>
-										</span>
+                                </span>
+                            </span>
                         </div>
                     </div>
                 </div>
@@ -83,17 +84,14 @@
                     <div class="pb-0 mt-0">
                         <div class="d-flex">
                             <div class="">
-                                <h4 class="tx-20 font-weight-bold mb-1 text-white">{{number_format(\App\invoices::where('Value_Status',1)->sum('Total'), 2)}}</h4>
+                                <h4 class="tx-20 font-weight-bold mb-1 text-white">
+                                    {{ number_format(\App\invoices::where('Value_Status', 1)->sum('Total'), 2) }}</h4>
                                 <p class="mb-0 tx-12 text-white op-7"> عدد
-                                    الفواتير {{App\invoices::where('Value_Status',1)->count()}}</p>
+                                    الفواتير {{ App\invoices::where('Value_Status', 1)->count() }}</p>
                             </div>
                             <span class="float-right my-auto mr-auto">
-											<i class="fas fa-arrow-circle-up text-white"></i>
-											<span
-
-                                                {{-- class="text-white op-7">{{round(App\invoices::where('Value_Status',1)->count()/App\invoices::count()* 100)}}</span> --}}
-
-										</span>
+                                <i class="fas fa-arrow-circle-up text-white"></i>
+                                <span {{-- class="text-white op-7">{{round(App\invoices::where('Value_Status',1)->count()/App\invoices::count()* 100)}}</span> --}} </span>
                         </div>
                     </div>
                 </div>
@@ -109,17 +107,14 @@
                     <div class="pb-0 mt-0">
                         <div class="d-flex">
                             <div class="">
-                                <h4 class="tx-20 font-weight-bold mb-1 text-white">{{number_format(\App\invoices::where('Value_Status',3)->sum('Total'), 2)}}</h4>
+                                <h4 class="tx-20 font-weight-bold mb-1 text-white">
+                                    {{ number_format(\App\invoices::where('Value_Status', 3)->sum('Total'), 2) }}</h4>
                                 <p class="mb-0 tx-12 text-white op-7"> عدد
-                                    الفواتير {{App\invoices::where('Value_Status',3)->count()}}</p>
+                                    الفواتير {{ App\invoices::where('Value_Status', 3)->count() }}</p>
                             </div>
                             <span class="float-right my-auto mr-auto">
-											<i class="fas fa-arrow-circle-down text-white"></i>
-											<span
-
-                                                {{-- class="text-white op-7">{{round(App\invoices::where('Value_Status',3)->count()/App\invoices::count()* 100)}}</span> --}}
-
-										</span>
+                                <i class="fas fa-arrow-circle-down text-white"></i>
+                                <span {{-- class="text-white op-7">{{round(App\invoices::where('Value_Status',3)->count()/App\invoices::count()* 100)}}</span> --}} </span>
                         </div>
                     </div>
                 </div>
@@ -149,8 +144,7 @@
         <div class="col-lg-12 col-xl-5">
             <div class="card card-dashboard-map-one">
                 <label class="main-content-label">احصائيات الفواتير</label>
-                <span
-                    class="d-block mg-b-20 text-muted tx-12"></span>
+                <span class="d-block mg-b-20 text-muted tx-12"></span>
                 <div class="">
                     {!! $chartjs_2->render() !!}
                 </div>
@@ -174,20 +168,20 @@
                 <div class="table-responsive country-table">
                     <table class="table table-striped table-bordered mb-0 text-sm-nowrap text-lg-nowrap text-xl-nowrap">
                         <thead>
-                        <tr>
-                            <th class="wd-lg-25p">Date</th>
-                            <th class="wd-lg-25p tx-right">Sales Count</th>
-                            <th class="wd-lg-25p tx-right">Earnings</th>
-                            <th class="wd-lg-25p tx-right">Tax Witheld</th>
-                        </tr>
+                            <tr>
+                                <th class="wd-lg-25p">Date</th>
+                                <th class="wd-lg-25p tx-right">Sales Count</th>
+                                <th class="wd-lg-25p tx-right">Earnings</th>
+                                <th class="wd-lg-25p tx-right">Tax Witheld</th>
+                            </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <td>05 Dec 2019</td>
-                            <td class="tx-right tx-medium tx-inverse">34</td>
-                            <td class="tx-right tx-medium tx-inverse">$658.20</td>
-                            <td class="tx-right tx-medium tx-danger">-$45.10</td>
-                        </tr>
+                            <tr>
+                                <td>05 Dec 2019</td>
+                                <td class="tx-right tx-medium tx-inverse">34</td>
+                                <td class="tx-right tx-medium tx-inverse">$658.20</td>
+                                <td class="tx-right tx-medium tx-danger">-$45.10</td>
+                            </tr>
 
 
                         </tbody>
@@ -203,23 +197,23 @@
 @endsection
 @section('js')
     <!--Internal  Chart.bundle js -->
-    <script src="{{URL::asset('assets/plugins/chart.js/Chart.bundle.min.js')}}"></script>
+    <script src="{{ URL::asset('assets/plugins/chart.js/Chart.bundle.min.js') }}"></script>
     <!-- Moment js -->
-    <script src="{{URL::asset('assets/plugins/raphael/raphael.min.js')}}"></script>
+    <script src="{{ URL::asset('assets/plugins/raphael/raphael.min.js') }}"></script>
     <!--Internal  Flot js-->
-    <script src="{{URL::asset('assets/plugins/jquery.flot/jquery.flot.js')}}"></script>
-    <script src="{{URL::asset('assets/plugins/jquery.flot/jquery.flot.pie.js')}}"></script>
-    <script src="{{URL::asset('assets/plugins/jquery.flot/jquery.flot.resize.js')}}"></script>
-    <script src="{{URL::asset('assets/plugins/jquery.flot/jquery.flot.categories.js')}}"></script>
-    <script src="{{URL::asset('assets/js/dashboard.sampledata.js')}}"></script>
-    <script src="{{URL::asset('assets/js/chart.flot.sampledata.js')}}"></script>
+    <script src="{{ URL::asset('assets/plugins/jquery.flot/jquery.flot.js') }}"></script>
+    <script src="{{ URL::asset('assets/plugins/jquery.flot/jquery.flot.pie.js') }}"></script>
+    <script src="{{ URL::asset('assets/plugins/jquery.flot/jquery.flot.resize.js') }}"></script>
+    <script src="{{ URL::asset('assets/plugins/jquery.flot/jquery.flot.categories.js') }}"></script>
+    <script src="{{ URL::asset('assets/js/dashboard.sampledata.js') }}"></script>
+    <script src="{{ URL::asset('assets/js/chart.flot.sampledata.js') }}"></script>
     <!--Internal Apexchart js-->
-    <script src="{{URL::asset('assets/js/apexcharts.js')}}"></script>
+    <script src="{{ URL::asset('assets/js/apexcharts.js') }}"></script>
     <!-- Internal Map -->
-    <script src="{{URL::asset('assets/plugins/jqvmap/jquery.vmap.min.js')}}"></script>
-    <script src="{{URL::asset('assets/plugins/jqvmap/maps/jquery.vmap.usa.js')}}"></script>
-    <script src="{{URL::asset('assets/js/modal-popup.js')}}"></script>
+    <script src="{{ URL::asset('assets/plugins/jqvmap/jquery.vmap.min.js') }}"></script>
+    <script src="{{ URL::asset('assets/plugins/jqvmap/maps/jquery.vmap.usa.js') }}"></script>
+    <script src="{{ URL::asset('assets/js/modal-popup.js') }}"></script>
     <!--Internal  index js -->
-    <script src="{{URL::asset('assets/js/index.js')}}"></script>
-    <script src="{{URL::asset('assets/js/jquery.vmap.sampledata.js')}}"></script>
+    <script src="{{ URL::asset('assets/js/index.js') }}"></script>
+    <script src="{{ URL::asset('assets/js/jquery.vmap.sampledata.js') }}"></script>
 @endsection
