@@ -72,7 +72,7 @@ class InvoicesController extends Controller
             'Value_VAT' => $request->Value_VAT,
             'Rate_VAT' => $request->Rate_VAT,
             'Total' => $request->Total,
-            'Status' => 'غير مدفوعه',
+            'Status' => 'Unpaid',
             'Value_Status' => 2,
             'note' => $request->note,
         ]);
@@ -83,7 +83,7 @@ class InvoicesController extends Controller
             'invoice_number' => $request->invoice_number,
             'product' => $request->product,
             'Section' => $request->Section,
-            'Status' => 'غير مدفوعه',
+            'Status' => 'Unpaid',
             'Value_Status' => 2,
             'note' => $request->note,
             'user' => (Auth::User()->name),
@@ -192,7 +192,7 @@ class InvoicesController extends Controller
 
             $invoices->delete();
             session()->flash('archive_invoice');
-            return redirect('/archive');
+            return redirect()->route('archive.index');
         }
 
 
@@ -220,7 +220,7 @@ class InvoicesController extends Controller
 
         $invoices = invoices::findOrFail($id);
 
-        if ($request->Status === 'مدفوعة') {
+        if ($request->Status === 'Paid') {
 
             //تحديث في جدول الفواتير الاب
             $invoices->update([
@@ -262,7 +262,7 @@ class InvoicesController extends Controller
             ]);
         }
         session()->flash('Status_Update');
-        return redirect('/invoices');
+        return redirect()->route('invoices.index');
 
 
     }
@@ -290,7 +290,7 @@ class InvoicesController extends Controller
             'Value_VAT' => $request->Value_VAT,
             'Rate_VAT' => $request->Rate_VAT,
             'Total' => $request->Total,
-            'Status' => 'غير مدفوعه',
+            'Status' => 'Unpaid',
             'Value_Status' => 2,
             'note' => $request->note,
         ]);
@@ -302,7 +302,7 @@ class InvoicesController extends Controller
             'invoice_number' => $request->invoice_number,
             'product' => $request->product,
             'Section' => $request->Section,
-            'Status' => 'غير مدفوعه',
+            'Status' => 'Unpaid',
             'Value_Status' => 2,
             'note' => $request->note,
             'user' => (Auth::User()->name),
@@ -346,7 +346,7 @@ class InvoicesController extends Controller
         Notification::send($user, new SendEmail($invoice_id));
 
         session()->flash('SendEmail');
-        return redirect('/invoices');
+        return redirect()->route('/invoices');
     }
 
 

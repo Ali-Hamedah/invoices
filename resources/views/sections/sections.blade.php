@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('title')
-    الاقسام - برنامج الفواتير
+{{__('dashboard.Sections')}} -  {{__('dashboard.Invoice_System_Dashboard')}}
 @stop
 @section('css')
     <!-- Internal Data table css -->
@@ -16,7 +16,7 @@
     <div class="breadcrumb-header justify-content-between">
         <div class="my-auto">
             <div class="d-flex">
-                <h4 class="content-title mb-0 my-auto">الاعدادات</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ الاقسام</span>
+                <h4 class="content-title mb-0 my-auto">{{__('dashboard.Settings')}}</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ {{__('dashboard.Sections')}}</span>
             </div>
         </div>
 
@@ -71,7 +71,7 @@
                     <div class="d-flex justify-content-between">
                         @can('اضافة قسم')
                             <a class="modal-effect btn btn-outline-primary btn-buy " data-effect="effect-scale"
-                               data-toggle="modal" href="#modaldemo1">اضافة قسم</a>
+                               data-toggle="modal" href="#modaldemo1"> {{__('dashboard.Add_Section')}}</a>
                         @endcan
 
                     </div>
@@ -84,9 +84,9 @@
                             <thead>
                             <tr>
                                 <th class="border-bottom-0">#</th>
-                                <th class="border-bottom-0">اسم القسم</th>
-                                <th class="border-bottom-0">الملاحظات</th>
-                                <th class="border-bottom-0">العمليات</th>
+                                <th class="border-bottom-0"> {{__('invoices.Section')}}</th>
+                                <th class="border-bottom-0">{{__('invoices.Notes')}}</th>
+                                <th class="border-bottom-0">{{__('invoices.Actions')}}</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -130,7 +130,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content modal-content-demo">
                 <div class="modal-header">
-                    <h6 class="modal-title">اضافة قسم</h6>
+                    <h6 class="modal-title"> {{__('invoices.Section')}}</h6>
                     <button aria-label="Close" class="close" data-dismiss="modal"
                             type="button"><span aria-hidden="true">&times;</span></button>
                 </div>
@@ -139,18 +139,18 @@
                         {{ csrf_field() }}
 
                         <div class="form-group">
-                            <label for="exampleInputEmail1">اسم القسم</label>
+                            <label for="exampleInputEmail1"> {{__('invoices.Section')}}</label>
                             <input type="text" class="form-control" id="section_name" name="section_name">
                         </div>
 
                         <div class="form-group">
-                            <label for="exampleFormControlTextarea1">ملاحظات</label>
+                            <label for="exampleFormControlTextarea1">{{__('invoices.Notes')}}</label>
                             <textarea class="form-control" id="description" name="description" rows="3"></textarea>
                         </div>
 
                         <div class="modal-footer">
-                            <button type="submit" class="btn btn-success">تاكيد</button>
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">اغلاق</button>
+                            <button type="submit" class="btn btn-success">{{__('messages.Confirm')}}</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">{{__('messages.Cancel')}}</button>
                         </div>
                     </form>
                 </div>
@@ -164,7 +164,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">تعديل القسم</h5>
+                    <h5 class="modal-title" id="exampleModalLabel"> {{__('dashboard.Edit_Section')}}</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -176,17 +176,17 @@
                         {{ csrf_field() }}
                         <div class="form-group">
                             <input type="hidden" name="id" id="id" value="">
-                            <label for="recipient-name" class="col-form-label">اسم القسم:</label>
+                            <label for="recipient-name" class="col-form-label"> {{__('invoices.Section')}}:</label>
                             <input class="form-control" name="section_name" id="section_name" type="text">
                         </div>
                         <div class="form-group">
-                            <label for="message-text" class="col-form-label">ملاحظات:</label>
+                            <label for="message-text" class="col-form-label">{{__('invoices.Notes')}}:</label>
                             <textarea class="form-control" id="description" name="description"></textarea>
                         </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary">تاكيد</button>
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">اغلاق</button>
+                    <button type="submit" class="btn btn-primary">{{__('messages.Confirm')}}</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">{{__('messages.Cancel')}}</button>
                 </div>
                 </form>
             </div>
@@ -198,7 +198,7 @@
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content modal-content-demo">
                 <div class="modal-header">
-                    <h6 class="modal-title">حذف القسم</h6>
+                    <h6 class="modal-title">{{__('dashboard.Delete')}}</h6>
                     <button aria-label="Close" class="close" data-dismiss="modal"
                             type="button"><span aria-hidden="true">&times;</span></button>
                 </div>
@@ -206,13 +206,13 @@
                     {{ method_field('delete') }}
                     {{ csrf_field() }}
                     <div class="modal-body">
-                        <p>هل انت متاكد من عملية الحذف ؟</p><br>
+                        <p>{{__('messages.Delete_Confirmation')}} </p><br>
                         <input type="hidden" name="id" id="id" value="">
                         <input class="form-control" name="section_name" id="section_name" type="text" readonly>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">الغاء</button>
-                        <button type="submit" class="btn btn-danger">تاكيد</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">{{__('messages.Confirm')}}</button>
+                        <button type="submit" class="btn btn-danger">{{__('messages.Cancel')}}</button>
                     </div>
             </div>
             </form>

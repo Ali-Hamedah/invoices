@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('title')
-    الفواتير المدفوعة - برنامج الفواتير
+    {{ __('dashboard.Invoice_System_Dashboard') }}
 @stop
 @section('css')
     <!-- Internal Data table css -->
@@ -10,7 +10,7 @@
     <link href="{{ URL::asset('assets/plugins/datatable/css/jquery.dataTables.min.css') }}" rel="stylesheet">
     <link href="{{ URL::asset('assets/plugins/datatable/css/responsive.dataTables.min.css') }}" rel="stylesheet">
     <link href="{{ URL::asset('assets/plugins/select2/css/select2.min.css') }}" rel="stylesheet">
-    <!--Internal   Notify -->
+    <!--Internal Notify -->
     <link href="{{ URL::asset('assets/plugins/notify/css/notifIt.css') }}" rel="stylesheet"/>
 @endsection
 @section('page-header')
@@ -18,12 +18,9 @@
     <div class="breadcrumb-header justify-content-between">
         <div class="my-auto">
             <div class="d-flex">
-                <h4 class="content-title mb-0 my-auto">الفواتير</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ الفواتير
-                    المدفوعة
-                </span>
+                <h4 class="content-title mb-0 my-auto">{{ __('dashboard.Invoices') }}</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ {{ __('dashboard.Partially_Paid_Invoices') }}</span>
             </div>
         </div>
-
     </div>
     <!-- breadcrumb -->
 @endsection
@@ -33,19 +30,18 @@
         <script>
             window.onload = function () {
                 notif({
-                    msg: "تم حذف الفاتورة بنجاح",
+                    msg: "{{ __('invoices.Invoice_Deleted_Successfully') }}",
                     type: "success"
                 })
             }
         </script>
     @endif
 
-
     @if (session()->has('Status_Update'))
         <script>
             window.onload = function () {
                 notif({
-                    msg: "تم تحديث حالة الدفع بنجاح",
+                    msg: "{{ __('invoices.Payment_Status_Updated_Successfully') }}",
                     type: "success"
                 })
             }
@@ -60,7 +56,7 @@
                 <div class="card-header pb-0">
                     <div class="d-flex justify-content-between">
                         <a href="invoices/create" class="modal-effect btn btn-sm btn-primary" style="color:white"><i
-                                class="fas fa-plus"></i>&nbsp; اضافة فاتورة</a>
+                                class="fas fa-plus"></i>&nbsp; {{ __('dashboard.Add_Invoice') }}</a>
                     </div>
                 </div>
                 <div class="card-body">
@@ -69,18 +65,18 @@
                             <thead>
                             <tr>
                                 <th class="border-bottom-0">#</th>
-                                <th class="border-bottom-0">رقم الفاتورة</th>
-                                <th class="border-bottom-0">تاريخ القاتورة</th>
-                                <th class="border-bottom-0">تاريخ الاستحقاق</th>
-                                <th class="border-bottom-0">المنتج</th>
-                                <th class="border-bottom-0">القسم</th>
-                                <th class="border-bottom-0">الخصم</th>
-                                <th class="border-bottom-0">نسبة الضريبة</th>
-                                <th class="border-bottom-0">قيمة الضريبة</th>
-                                <th class="border-bottom-0">الاجمالي</th>
-                                <th class="border-bottom-0">الحالة</th>
-                                <th class="border-bottom-0">ملاحظات</th>
-                                <th class="border-bottom-0">العمليات</th>
+                                <th class="border-bottom-0">{{ __('invoices.Invoice_Number') }}</th>
+                                <th class="border-bottom-0">{{ __('invoices.Invoice_Date') }}</th>
+                                <th class="border-bottom-0">{{ __('invoices.Due_Date') }}</th>
+                                <th class="border-bottom-0">{{ __('invoices.Product') }}</th>
+                                <th class="border-bottom-0">{{ __('invoices.Section') }}</th>
+                                <th class="border-bottom-0">{{ __('invoices.Discount') }}</th>
+                                <th class="border-bottom-0">{{ __('invoices.Tax_Rate') }}</th>
+                                <th class="border-bottom-0">{{ __('invoices.Tax_Value') }}</th>
+                                <th class="border-bottom-0">{{ __('invoices.Total') }}</th>
+                                <th class="border-bottom-0">{{ __('invoices.Status') }}</th>
+                                <th class="border-bottom-0">{{ __('invoices.Notes') }}</th>
+                                <th class="border-bottom-0">{{ __('invoices.Actions') }}</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -112,7 +108,6 @@
                                         @else
                                             <span class="text-warning">{{ $invoice->Status }}</span>
                                         @endif
-
                                     </td>
 
                                     <td>{{ $invoice->note }}</td>
@@ -120,36 +115,30 @@
                                         <div class="dropdown">
                                             <button aria-expanded="false" aria-haspopup="true"
                                                     class="btn ripple btn-primary btn-sm" data-toggle="dropdown"
-                                                    type="button">العمليات<i class="fas fa-caret-down ml-1"></i>
+                                                    type="button">{{ __('invoices.Actions') }}<i class="fas fa-caret-down ml-1"></i>
                                             </button>
                                             <div class="dropdown-menu tx-13">
                                                 @can('تعديل الفاتورة')
                                                     <a class="dropdown-item"
-                                                       href=" {{ url('edit_invoice') }}/{{ $invoice->id }}">تعديل
-                                                        الفاتورة</a>
+                                                       href=" {{ route('edit_invoice', ['id' => $invoice->id]) }}"><i
+                                                       class="text-primary fas fa-edit"></i>&nbsp;&nbsp;{{ __('dashboard.Edit_Invoice') }}</a>
                                                 @endcan
                                                 @can('حذف الفاتورة')
                                                     <a class="dropdown-item" href="#"
                                                        data-invoice_id="{{ $invoice->id }}"
                                                        data-toggle="modal" data-target="#delete_invoice"><i
-                                                            class="text-danger fas fa-trash-alt"></i>&nbsp;&nbsp;حذف
-                                                        الفاتورة</a>
+                                                            class="text-danger fas fa-trash-alt"></i>&nbsp;&nbsp;{{ __('dashboard.Delete_Invoice') }}</a>
                                                 @endcan
                                                 @can('تغير حالة الدفع')
                                                     <a class="dropdown-item"
-                                                       href="{{ URL::route('Status_show', [$invoice->id]) }}"><i
-                                                            class=" text-success fas
-                                                                                                                                    fa-money-bill"></i>&nbsp;&nbsp;تغير
-                                                        حالة
-                                                        الدفع</a>
+                                                       href="{{ route('Status_show', [$invoice->id]) }}"><i
+                                                            class=" text-success fas fa-money-bill"></i>&nbsp;&nbsp;{{ __('dashboard.Change_Payment_Status') }}</a>
                                                 @endcan
                                                 @can('ارشفة الفاتورة')
                                                     <a class="dropdown-item" href="#"
                                                        data-invoice_id="{{ $invoice->id }}"
                                                        data-toggle="modal" data-target="#Transfer_invoice"><i
-                                                            class="text-warning fas fa-exchange-alt"></i>&nbsp;&nbsp;نقل
-                                                        الي
-                                                        الارشيف</a>
+                                                            class="text-warning fas fa-exchange-alt"></i>&nbsp;&nbsp;{{ __('dashboard.Move_to_Archive') }}</a>
                                                 @endcan
 
                                             </div>
@@ -174,7 +163,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">حذف الفاتورة</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">{{ __('dashboard.Delete_Invoice') }}</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -183,12 +172,12 @@
                     {{ csrf_field() }}
                 </div>
                 <div class="modal-body">
-                    هل انت متاكد من عملية الحذف ؟
+                    {{ __('messages.Delete_Confirmation') }}
                     <input type="hidden" name="invoice_id" id="invoice_id" value="">
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">الغاء</button>
-                    <button type="submit" class="btn btn-danger">تاكيد</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('messages.Cancel') }}</button>
+                    <button type="submit" class="btn btn-danger">{{ __('messages.Confirm') }}</button>
                 </div>
                 </form>
             </div>
@@ -202,7 +191,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">ارشفة الفاتورة</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">{{ __('dashboard.Archive_Invoice') }}</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -211,14 +200,13 @@
                     {{ csrf_field() }}
                 </div>
                 <div class="modal-body">
-                    هل انت متاكد من عملية الارشفة ؟
+                    {{ __('messages.Archive_Confirmation') }}
                     <input type="hidden" name="invoice_id" id="invoice_id" value="">
                     <input type="hidden" name="id_page" id="id_page" value="2">
-
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">الغاء</button>
-                    <button type="submit" class="btn btn-success">تاكيد</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('messages.Cancel') }}</button>
+                    <button type="submit" class="btn btn-success">{{ __('messages.Confirm') }}</button>
                 </div>
                 </form>
             </div>
@@ -250,9 +238,9 @@
     <script src="{{ URL::asset('assets/plugins/datatable/js/buttons.colVis.min.js') }}"></script>
     <script src="{{ URL::asset('assets/plugins/datatable/js/dataTables.responsive.min.js') }}"></script>
     <script src="{{ URL::asset('assets/plugins/datatable/js/responsive.bootstrap4.min.js') }}"></script>
-    <!--Internal  Datatable js -->
+    <!--Internal Datatable js -->
     <script src="{{ URL::asset('assets/js/table-data.js') }}"></script>
-    <!--Internal  Notify js -->
+    <!--Internal Notify js -->
     <script src="{{ URL::asset('assets/plugins/notify/js/notifIt.js') }}"></script>
     <script src="{{ URL::asset('assets/plugins/notify/js/notifit-custom.js') }}"></script>
 
@@ -273,5 +261,6 @@
             modal.find('.modal-body #invoice_id').val(invoice_id);
         })
     </script>
+
 
 @endsection

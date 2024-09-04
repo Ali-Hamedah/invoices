@@ -3,7 +3,7 @@
     <!--Internal   Notify -->
     <link href="{{ URL::asset('assets/plugins/notify/css/notifIt.css') }}" rel="stylesheet"/>
     @section('title')
-        صلاحيات المستخدمين - برنامج الفواتير
+    {{__('dashboard.View_Permission')}} -  {{__('dashboard.Invoice_System_Dashboard')}}
     @stop
 
 @endsection
@@ -12,8 +12,8 @@
     <div class="breadcrumb-header justify-content-between">
         <div class="my-auto">
             <div class="d-flex">
-                <h4 class="content-title mb-0 my-auto">المستخدمين</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0"> /
-                صلاحيات المستخدمين</span>
+                <h4 class="content-title mb-0 my-auto"> {{__('dashboard.Invoice_System_Dashboard')}}</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0"> /
+                    {{__('dashboard.View_Permission')}}</span>
             </div>
         </div>
     </div>
@@ -63,7 +63,7 @@
                         <div class="col-lg-12 margin-tb">
                             <div class="pull-right">
                                 @can('اضافة صلاحية')
-                                    <a class="btn btn-primary btn-sm" href="{{ route('roles.create') }}">اضافة</a>
+                                    <a class="btn btn-primary btn-sm" href="{{ route('roles.create') }}"> {{__('dashboard.Add')}}</a>
                                 @endcan
                             </div>
                         </div>
@@ -77,8 +77,8 @@
                             <thead>
                             <tr>
                                 <th>#</th>
-                                <th>الاسم</th>
-                                <th>العمليات</th>
+                                <th>{{__('messages.Name')}}</th>
+                                <th>{{__('invoices.Actions')}}</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -89,19 +89,19 @@
                                     <td>
                                         @can('عرض صلاحية')
                                             <a class="btn btn-success btn-sm"
-                                               href="{{ route('roles.show', $role->id) }}">عرض</a>
+                                               href="{{ route('roles.show', $role->id) }}">{{__('dashboard.View')}}</a>
                                         @endcan
 
                                         @can('تعديل صلاحية')
                                             <a class="btn btn-primary btn-sm"
-                                               href="{{ route('roles.edit', $role->id) }}">تعديل</a>
+                                               href="{{ route('roles.edit', $role->id) }}">{{__('dashboard.Edit')}}</a>
                                         @endcan
 
                                         @if ($role->name !== 'owner')
                                             @can('حذف صلاحية')
                                                 {!! Form::open(['method' => 'DELETE', 'route' => ['roles.destroy',
                                                 $role->id], 'style' => 'display:inline']) !!}
-                                                {!! Form::submit('حذف', ['class' => 'btn btn-danger btn-sm']) !!}
+                                                {!! Form::submit(__('dashboard.Delete'), ['class' => 'btn btn-danger btn-sm']) !!}
                                                 {!! Form::close() !!}
                                             @endcan
                                         @endif

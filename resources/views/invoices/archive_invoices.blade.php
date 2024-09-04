@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('title')
-    قائمة الفواتير - برنامج الفواتير
+    {{ __('dashboard.Invoice_List') }} - {{ __('dashboard.Unpaid_Invoices') }}
 @endsection
 @section('css')
     <!-- Internal Data table css -->
@@ -10,7 +10,7 @@
     <link href="{{URL::asset('assets/plugins/datatable/css/jquery.dataTables.min.css')}}" rel="stylesheet">
     <link href="{{URL::asset('assets/plugins/datatable/css/responsive.dataTables.min.css')}}" rel="stylesheet">
     <link href="{{URL::asset('assets/plugins/select2/css/select2.min.css')}}" rel="stylesheet">
-    <!--Internal   Notify -->
+    <!--Internal Notify -->
     <link href="{{URL::asset('assets/plugins/notify/css/notifIt.css')}}" rel="stylesheet"/>
 @endsection
 @section('page-header')
@@ -18,12 +18,10 @@
     <div class="breadcrumb-header justify-content-between">
         <div class="my-auto">
             <div class="d-flex">
-                <h4 class="content-title mb-0 my-auto">الفواتير</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ ارشيف الفواتير </span>
+                <h4 class="content-title mb-0 my-auto">{{ __('dashboard.Invoices') }}</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ {{ __('dashboard.Invoice_Archive') }} </span>
             </div>
         </div>
     </div>
-
-
     <!-- breadcrumb -->
 @endsection
 @section('content')
@@ -32,7 +30,7 @@
         <script>
             window.onload = function () {
                 notif({
-                    msg: "تم ارشفة الفاتورة بنجاح",
+                    msg: "{{ __('invoices.Invoice_Archived_Successfully') }}",
                     type: "success"
                 })
             }
@@ -43,7 +41,7 @@
         <script>
             window.onload = function () {
                 notif({
-                    msg: "تم حذف الفاتورة بنجاح",
+                    msg: "{{ __('invoices.Invoice_Deleted_Successfully') }}",
                     type: "success"
                 })
             }
@@ -59,12 +57,11 @@
                 <div class="card-header pb-0">
 
                     <a href="invoices/create" class="modal-effect btn btn-sm btn-primary" style="color:white"><i
-                            class="fas fa-plus"></i>&nbsp; اضافة فاتورة</a>
+                            class="fas fa-plus"></i>&nbsp; {{ __('dashboard.Add_Invoice') }}</a>
 
-
-                    @can('تصدير EXCEL')
+                    @can('export_excel')
                         <a class="modal-effect btn btn-sm btn-primary" href="{{ url('export_invoices') }}"
-                           style="color:white"><i class="fas fa-file-download"></i>&nbsp;تصدير اكسيل</a>
+                           style="color:white"><i class="fas fa-file-download"></i>&nbsp;{{ __('dashboard.Export_to_EXCEL') }}</a>
                     @endcan
 
                 </div>
@@ -74,43 +71,39 @@
                             <thead>
                             <tr>
                                 <th class="border-bottom-0">#</th>
-                                <th class="border-bottom-0">رقم الفاتوره</th>
-                                <th class="border-bottom-0">تاريخ الفاتوره</th>
-                                <th class="border-bottom-0">تاريخ الاستحقاق</th>
-                                <th class="border-bottom-0">المنتج</th>
-                                <th class="border-bottom-0">القسم</th>
-                                <th class="border-bottom-0">الخصم</th>
-                                <th class="border-bottom-0">نسبة الضريبة</th>
-                                <th class="border-bottom-0">قيمة الضريبة</th>
-                                <th class="border-bottom-0">الاجمالي</th>
-                                <th class="border-bottom-0">الحاله</th>
-                                <th class="border-bottom-0">الملاحظات</th>
-                                <th class="border-bottom-0">العمليات</th>
+                                <th class="border-bottom-0">{{ __('invoices.Invoice_Number') }}</th>
+                                <th class="border-bottom-0">{{ __('invoices.Invoice_Date') }}</th>
+                                <th class="border-bottom-0">{{ __('invoices.Due_Date') }}</th>
+                                <th class="border-bottom-0">{{ __('invoices.Product') }}</th>
+                                <th class="border-bottom-0">{{ __('invoices.Section') }}</th>
+                                <th class="border-bottom-0">{{ __('invoices.Discount') }}</th>
+                                <th class="border-bottom-0">{{ __('invoices.Tax_Rate') }}</th>
+                                <th class="border-bottom-0">{{ __('invoices.Tax_Value') }}</th>
+                                <th class="border-bottom-0">{{ __('invoices.Total') }}</th>
+                                <th class="border-bottom-0">{{ __('invoices.Status') }}</th>
+                                <th class="border-bottom-0">{{ __('invoices.Notes') }}</th>
+                                <th class="border-bottom-0">{{ __('invoices.Actions') }}</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <?php $i = 0; ?>
+                            @php $i = 0; @endphp
                             @foreach ($invoices as $invoice)
-                                <?php $i++; ?>
+                                @php $i++; @endphp
                                 <tr>
                                     <td>{{ $i }}</td>
                                     <td>{{ $invoice->invoice_number }}</td>
-                                    <td>{{ $invoice-> invoice_Date }}</td>
-                                    <td>{{ $invoice-> Due_date }}</td>
+                                    <td>{{ $invoice->invoice_Date }}</td>
+                                    <td>{{ $invoice->Due_date }}</td>
                                     <td>{{ $invoice->product }}</td>
-
-
                                     <td>
-
-                                        <a href="{{route('InvoicesDetails', $invoice -> id )}}"
-                                           class="btn btn-link btn-sm"
-                                           role="button">{{$invoice-> sections-> section_name}}</a>
+                                        <a href="{{route('InvoicesDetails', $invoice->id)}}"
+                                           class="btn btn-link btn-sm" role="button">
+                                            {{ $invoice->sections->section_name }}
+                                        </a>
                                     </td>
-
-
-                                    <td>{{ $invoice-> Discount }}</td>
+                                    <td>{{ $invoice->Discount }}</td>
                                     <td>{{ $invoice->Value_VAT }}</td>
-                                    <td>{{ $invoice-> Rate_VAT }}</td>
+                                    <td>{{ $invoice->Rate_VAT }}</td>
                                     <td>{{ $invoice->Total }}</td>
                                     <td>
                                         @if ($invoice->Value_Status == 1)
@@ -120,38 +113,27 @@
                                         @else
                                             <span class="text-warning">{{ $invoice->Status }}</span>
                                         @endif
-
                                     </td>
-                                    <td>{{ $invoice-> note }}</td>
+                                    <td>{{ $invoice->note }}</td>
                                     <td>
                                         <div class="dropdown">
                                             <button aria-expanded="false" aria-haspopup="true"
                                                     class="btn ripple btn-primary btn-sm"
-                                                    data-toggle="dropdown" type="button">العمليات<i
+                                                    data-toggle="dropdown" type="button">{{ __('invoices.Actions') }}<i
                                                     class="fas fa-caret-down ml-1"></i></button>
                                             <div class="dropdown-menu tx-13">
-
-                                                <a class="dropdown-item" href="#" data-invoice_id="{{ $invoice->id }}"
+                                                <a class="dropdown-item" href="#"
+                                                   data-invoice_id="{{ $invoice->id }}"
                                                    data-toggle="modal" data-target="#Transfer_invoice"><i
-                                                        class="text-warning fas fa-exchange-alt"></i>&nbsp;&nbsp;نقل الي
-                                                    الفواتير</a>
+                                                        class="text-warning fas fa-exchange-alt"></i>&nbsp;&nbsp;{{ __('dashboard.Move_to_Invoices') }}</a>
 
-
-                                                <a class="dropdown-item" href="#" data-invoice_id="{{ $invoice->id }}"
+                                                <a class="dropdown-item" href="#"
+                                                   data-invoice_id="{{ $invoice->id }}"
                                                    data-toggle="modal" data-target="#delete_invoice"><i
-                                                        class="text-danger fas fa-trash-alt"></i>&nbsp;&nbsp;حذف
-                                                    الفاتورة</a>
-
-
+                                                        class="text-danger fas fa-trash-alt"></i>&nbsp;&nbsp;{{ __('dashboard.Delete_Invoice') }}</a>
                                             </div>
-
-
                                         </div>
-
-
                                     </td>
-
-
                                 </tr>
                             @endforeach
                             </tbody>
@@ -168,7 +150,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">حذف الفاتورة</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">{{ __('dashboard.Delete_Invoice') }}</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -177,25 +159,24 @@
                     {{ csrf_field() }}
                 </div>
                 <div class="modal-body">
-                    هل انت متاكد من عملية الحذف ؟
+                    {{ __('messages.Delete_Confirmation') }}
                     <input type="hidden" name="invoice_id" id="invoice_id" value="">
-
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">الغاء</button>
-                    <button type="submit" class="btn btn-danger">تاكيد</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('messages.Cancel') }}</button>
+                    <button type="submit" class="btn btn-danger">{{ __('messages.Confirm') }}</button>
                 </div>
                 </form>
             </div>
         </div>
     </div>
-    <!-- ارشيف الفاتورة -->
+    <!-- الغاء ارشفة الفاتورة -->
     <div class="modal fade" id="Transfer_invoice" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
          aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">الغاء ارشفة الفاتورة</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">{{ __('dashboard.Unarchive_Invoice') }}</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -204,20 +185,17 @@
                     {{ csrf_field() }}
                 </div>
                 <div class="modal-body">
-                    هل انت متاكد من عملية الغاء الارشفة ؟
+                    {{ __('messages.Unarchive_Confirmation') }}
                     <input type="hidden" name="invoice_id" id="invoice_id" value="">
-
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">الغاء</button>
-                    <button type="submit" class="btn btn-success">تاكيد</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('messages.Cancel') }}</button>
+                    <button type="submit" class="btn btn-success">{{ __('messages.Confirm') }}</button>
                 </div>
                 </form>
             </div>
         </div>
     </div>
-
-
 
     <!-- row closed -->
 
@@ -243,21 +221,18 @@
     <script src="{{URL::asset('assets/plugins/datatable/js/buttons.colVis.min.js')}}"></script>
     <script src="{{URL::asset('assets/plugins/datatable/js/dataTables.responsive.min.js')}}"></script>
     <script src="{{URL::asset('assets/plugins/datatable/js/responsive.bootstrap4.min.js')}}"></script>
-    <!--Internal  Datatable js -->
+    <!--Internal Datatable js -->
     <script src="{{URL::asset('assets/js/table-data.js')}}"></script>
-    <!--Internal  Notify js -->
+    <!--Internal Notify js -->
     <script src="{{URL::asset('assets/plugins/notify/js/notifIt.js')}}"></script>
     <script src="{{URL::asset('assets/plugins/notify/js/notifit-custom.js')}}"></script>
 
     <script>
-
-        //Delete
         $('#delete_invoice').on('show.bs.modal', function (event) {
             var button = $(event.relatedTarget)
             var invoice_id = button.data('invoice_id')
             var invoice_number = button.data('invoice_number')
             var modal = $(this)
-
             modal.find('.modal-body #invoice_id').val(invoice_id);
             modal.find('.modal-body #invoice_number').val(invoice_number);
         })

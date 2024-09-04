@@ -15,7 +15,7 @@
     <link href="{{ URL::asset('assets/plugins/select2/css/select2.min.css') }}" rel="stylesheet">
 
     @section('title')
-        تقرير العملاء - برنامج الفواتير
+    {{__('dashboard.Client_Report')}} -  {{__('dashboard.Invoice_System_Dashboard')}}
     @stop
 @endsection
 @section('page-header')
@@ -23,8 +23,8 @@
     <div class="breadcrumb-header justify-content-between">
         <div class="my-auto">
             <div class="d-flex">
-                <h4 class="content-title mb-0 my-auto">التقارير</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ تقرير
-                العملاء</span>
+                <h4 class="content-title mb-0 my-auto">{{__('dashboard.Reports')}} </h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ 
+                    {{__('dashboard.Client_Report')}} </span>
             </div>
         </div>
     </div>
@@ -55,7 +55,7 @@
 
                 <div class="card-header pb-0">
 
-                    <form action="/Search_customers" method="POST" role="search" autocomplete="off">
+                    <form action="Search_customers" method="POST" role="search" autocomplete="off">
 
                         {{ csrf_field() }}
 
@@ -63,7 +63,7 @@
                         <div class="row">
 
                             <div class="col">
-                                <label for="inputName" class="control-label">القسم</label>
+                                <label for="inputName" class="control-label">{{__('dashboard.Sections')}} </label>
                                 <select name="Section" class="form-control select2" onclick="console.log($(this).val())"
                                         onchange="console.log('change is firing')">
                                     <!--placeholder-->
@@ -75,14 +75,14 @@
                             </div>
 
                             <div class="col-lg-3 mg-t-20 mg-lg-t-0">
-                                <label for="inputName" class="control-label">المنتج</label>
+                                <label for="inputName" class="control-label">{{__('dashboard.Products')}} </label>
                                 <select id="product" name="product" class="form-control select2">
                                 </select>
                             </div>
 
 
                             <div class="col-lg-3" id="start_at">
-                                <label for="exampleFormControlSelect1">من تاريخ</label>
+                                <label for="exampleFormControlSelect1"> {{__('dashboard.From_Date')}} </label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <div class="input-group-text">
@@ -95,7 +95,7 @@
                             </div>
 
                             <div class="col-lg-3" id="end_at">
-                                <label for="exampleFormControlSelect1">الي تاريخ</label>
+                                <label for="exampleFormControlSelect1"> {{__('dashboard.To_Date')}} </label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <div class="input-group-text">
@@ -124,17 +124,17 @@
                                 <thead>
                                 <tr>
                                     <th class="border-bottom-0">#</th>
-                                    <th class="border-bottom-0">رقم الفاتورة</th>
-                                    <th class="border-bottom-0">تاريخ القاتورة</th>
-                                    <th class="border-bottom-0">تاريخ الاستحقاق</th>
-                                    <th class="border-bottom-0">المنتج</th>
-                                    <th class="border-bottom-0">القسم</th>
-                                    <th class="border-bottom-0">الخصم</th>
-                                    <th class="border-bottom-0">نسبة الضريبة</th>
-                                    <th class="border-bottom-0">قيمة الضريبة</th>
-                                    <th class="border-bottom-0">الاجمالي</th>
-                                    <th class="border-bottom-0">الحالة</th>
-                                    <th class="border-bottom-0">ملاحظات</th>
+                                    <th class="border-bottom-0">{{ __('invoices.Invoice_Number') }}</th>
+                                    <th class="border-bottom-0">{{ __('invoices.Invoice_Date') }}</th>
+                                    <th class="border-bottom-0">{{ __('invoices.Due_Date') }}</th>
+                                    <th class="border-bottom-0">{{ __('invoices.Product') }}</th>
+                                    <th class="border-bottom-0">{{ __('invoices.Section') }}</th>
+                                    <th class="border-bottom-0">{{ __('invoices.Discount') }}</th>
+                                    <th class="border-bottom-0">{{ __('dashboard.VAT_Rate') }}</th>
+                                    <th class="border-bottom-0">{{ __('dashboard.VAT_Value') }}</th>
+                                    <th class="border-bottom-0">{{ __('invoices.Total') }}</th>
+                                    <th class="border-bottom-0">{{ __('invoices.Status') }}</th>
+                                    <th class="border-bottom-0">{{ __('invoices.Notes') }}</th>
 
                                 </tr>
                                 </thead>

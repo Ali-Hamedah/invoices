@@ -15,7 +15,7 @@
     <link href="{{ URL::asset('assets/plugins/select2/css/select2.min.css') }}" rel="stylesheet">
 
     @section('title')
-        تقرير الفواتير - برنامج الفواتير
+    {{__('dashboard.Invoice_Report')}} -  {{__('dashboard.Invoice_System_Dashboard')}}
     @stop
 @endsection
 @section('page-header')
@@ -23,8 +23,8 @@
     <div class="breadcrumb-header justify-content-between">
         <div class="my-auto">
             <div class="d-flex">
-                <h4 class="content-title mb-0 my-auto">التقارير</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ تقرير
-                الفواتير</span>
+                <h4 class="content-title mb-0 my-auto">{{ __('dashboard.Reports') }}</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ 
+                    {{ __('dashboard.Invoice_Report') }}</span>
             </div>
         </div>
     </div>
@@ -37,7 +37,7 @@
             <button aria-label="Close" class="close" data-dismiss="alert" type="button">
                 <span aria-hidden="true">&times;</span>
             </button>
-            <strong>خطا</strong>
+            <strong>{{ __('dashboard.Error') }}</strong>
             <ul>
                 @foreach ($errors->all() as $error)
                     <li>{{ $error }}</li>
@@ -55,19 +55,19 @@
 
                 <div class="card-header pb-0">
 
-                    <form action="/Search_invoices" method="POST" role="search" autocomplete="off">
+                    <form action="Search_invoices" method="POST" role="search" autocomplete="off">
                         {{ csrf_field() }}
 
 
                         <div class="col-lg-3">
                             <label class="rdiobox">
-                                <input checked name="rdio" type="radio" value="1" id="type_div"> <span>بحث بنوع
-                                الفاتورة</span></label>
+                                <input checked name="rdio" type="radio" value="1" id="type_div"> <span> 
+                                    {{ __('dashboard.Search_By_Invoice_Type') }}</span></label>
                         </div>
 
 
                         <div class="col-lg-3 mg-t-20 mg-lg-t-0">
-                            <label class="rdiobox"><input name="rdio" value="2" type="radio"><span>بحث برقم الفاتورة
+                            <label class="rdiobox"><input name="rdio" value="2" type="radio"><span>  {{ __('dashboard.Search_By_Invoice_Number') }}
                             </span></label>
                         </div>
                         <br><br>
@@ -75,29 +75,29 @@
                         <div class="row">
 
                             <div class="col-lg-3 mg-t-20 mg-lg-t-0" id="type">
-                                <p class="mg-b-10">تحديد نوع الفواتير</p><select class="form-control select2"
+                                <p class="mg-b-10">  {{ __('dashboard.Select_Invoice_Type') }}</p><select class="form-control select2"
                                                                                  name="type"
                                                                                  required>
-                                    <option value="{{ $type ?? 'حدد نوع الفواتير' }}" selected>
-                                        {{ $type ?? 'حدد نوع الفواتير' }}
+                                    <option value="{{ $type ??   __('dashboard.Select_Invoice_Type')  }}" selected>
+                                        {{ $type ?? __('dashboard.Select_Invoice_Type')  }}
                                     </option>
 
-                                    <option value="مدفوعة">الفواتير المدفوعة</option>
-                                    <option value="غير مدفوعه">الفواتير الغير مدفوعة</option>
-                                    <option value="مدفوعة جزئيا">الفواتير المدفوعة جزئيا</option>
+                                    <option value="paid"> {{ __('dashboard.Paid_Invoices') }}</option>
+                                    <option value="unpaid">  {{ __('dashboard.Unpaid_Invoices') }}</option>
+                                    <option value="partially Paid">  {{ __('dashboard.Partially_Paid_Invoices') }}</option>
 
                                 </select>
                             </div><!-- col-4 -->
 
 
                             <div class="col-lg-3 mg-t-20 mg-lg-t-0" id="invoice_number">
-                                <p class="mg-b-10">البحث برقم الفاتورة</p>
+                                <p class="mg-b-10"> {{ __('dashboard.Search_By_Invoice_Number') }}</p>
                                 <input type="text" class="form-control" id="invoice_number" name="invoice_number">
 
                             </div><!-- col-4 -->
 
                             <div class="col-lg-3" id="start_at">
-                                <label for="exampleFormControlSelect1">من تاريخ</label>
+                                <label for="exampleFormControlSelect1"> {{ __('dashboard.From_Date') }}</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <div class="input-group-text">
@@ -110,7 +110,7 @@
                             </div>
 
                             <div class="col-lg-3" id="end_at">
-                                <label for="exampleFormControlSelect1">الي تاريخ</label>
+                                <label for="exampleFormControlSelect1"> {{ __('dashboard.To_Date') }}</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <div class="input-group-text">
@@ -126,7 +126,7 @@
 
                         <div class="row">
                             <div class="col-sm-1 col-md-1">
-                                <button class="btn btn-primary btn-buy">بحث</button>
+                                <button class="btn btn-primary btn-buy">{{ __('dashboard.Search') }}</button>
                             </div>
                         </div>
                     </form>
@@ -139,17 +139,17 @@
                                 <thead>
                                 <tr>
                                     <th class="border-bottom-0">#</th>
-                                    <th class="border-bottom-0">رقم الفاتورة</th>
-                                    <th class="border-bottom-0">تاريخ القاتورة</th>
-                                    <th class="border-bottom-0">تاريخ الاستحقاق</th>
-                                    <th class="border-bottom-0">المنتج</th>
-                                    <th class="border-bottom-0">القسم</th>
-                                    <th class="border-bottom-0">الخصم</th>
-                                    <th class="border-bottom-0">نسبة الضريبة</th>
-                                    <th class="border-bottom-0">قيمة الضريبة</th>
-                                    <th class="border-bottom-0">الاجمالي</th>
-                                    <th class="border-bottom-0">الحالة</th>
-                                    <th class="border-bottom-0">ملاحظات</th>
+                                    <th class="border-bottom-0">{{ __('invoices.Invoice_Number') }}</th>
+                                    <th class="border-bottom-0">{{ __('invoices.Invoice_Date') }}</th>
+                                    <th class="border-bottom-0">{{ __('invoices.Due_Date') }}</th>
+                                    <th class="border-bottom-0">{{ __('invoices.Product') }}</th>
+                                    <th class="border-bottom-0">{{ __('invoices.Section') }}</th>
+                                    <th class="border-bottom-0">{{ __('invoices.Discount') }}</th>
+                                    <th class="border-bottom-0">{{ __('dashboard.VAT_Rate') }}</th>
+                                    <th class="border-bottom-0">{{ __('dashboard.VAT_Value') }}</th>
+                                    <th class="border-bottom-0">{{ __('invoices.Total') }}</th>
+                                    <th class="border-bottom-0">{{ __('invoices.Status') }}</th>
+                                    <th class="border-bottom-0">{{ __('invoices.Notes') }}</th>
 
                                 </tr>
                                 </thead>
@@ -164,7 +164,7 @@
                                         <td>{{ $invoice->Due_date }}</td>
                                         <td>{{ $invoice->product }}</td>
                                         <td><a
-                                                href="{{ url('InvoicesDetails') }}/{{ $invoice->id }}">{{ $invoice->sections->section_name }}</a>
+                                                href="{{ route('InvoicesDetails', ['id' => $invoice->id] )}}">{{ $invoice->sections->section_name }}</a>
                                         </td>
                                         <td>{{ $invoice->Discount }}</td>
                                         <td>{{ $invoice->Rate_VAT }}</td>

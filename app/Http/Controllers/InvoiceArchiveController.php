@@ -74,7 +74,7 @@ class InvoiceArchiveController extends Controller
         $id = $request->invoice_id;
         $flight = Invoices::withTrashed()->where('id', $id)->restore();
         session()->flash('success');
-        return redirect('/invoices');
+        return redirect()->route('invoices.index');
     }
 
 

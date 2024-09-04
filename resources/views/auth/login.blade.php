@@ -1,7 +1,7 @@
 @extends('layouts.master2')
 
 @section('title')
-    تسجيل الدخول - برنامج الفواتير
+      {{__('dashboard.login')}} -  {{__('dashboard.Invoice_System_Dashboard')}}
 @stop
 
 
@@ -28,12 +28,12 @@
                                         <h1 class="main-logo1 ml-1 mr-0 my-auto tx-28">Ali<span>So</span>ft</h1></div>
                                     <div class="card-sigin">
                                         <div class="main-signup-header">
-                                            <h2>مرحبا بك</h2>
+                                            <h2>   {{__('dashboard.welcome')}}</h2>
                                             <h5 class="font-weight-semibold mb-4"> {{ __('messages.login') }}</h5>
                                             <form method="POST" action="{{ route('login') }}">
                                                 @csrf
                                                 <div class="form-group">
-                                                    <label>البريد الالكتروني</label>
+                                                    <label> {{__('dashboard.Email')}}</label>
                                                     <input id="email" type="email"
                                                            class="form-control @error('email') is-invalid @enderror"
                                                            name="email" value="{{ old('email') }}" required
@@ -46,7 +46,7 @@
                                                 </div>
 
                                                 <div class="form-group">
-                                                    <label>كلمة المرور</label>
+                                                    <label> {{__('messages.password')}}</label>
 
                                                     <input id="password" type="password"
                                                            class="form-control @error('password') is-invalid @enderror"
@@ -65,7 +65,7 @@
                                                                        id="remember" {{ old('remember') ? 'checked' : '' }}>
                                                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                                                 <label class="form-check-label" for="remember">
-                                                                    {{ __('تذكرني') }}
+                                                                    {{ __('Remember me.') }}
                                                                 </label>
                                                             </div>
                                                         </div>
