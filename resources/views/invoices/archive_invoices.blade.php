@@ -96,7 +96,7 @@
                                     <td>{{ $invoice->Due_date }}</td>
                                     <td>{{ $invoice->product }}</td>
                                     <td>
-                                        <a href="{{route('InvoicesDetails', $invoice->id)}}"
+                                        <a href="{{route('InvoicesDetails',[$invoice->id, ''] )}}"
                                            class="btn btn-link btn-sm" role="button">
                                             {{ $invoice->sections->section_name }}
                                         </a>

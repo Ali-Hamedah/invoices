@@ -96,6 +96,7 @@
                                                        class="btn btn-sm btn-info"
                                                        title="تعديل"><i class="las la-pen"></i></a>
                                                 @endcan
+                                                @if ($role->name !== 'owner')
                                                 @can('delete user')
                                                     <a class="modal-effect btn btn-sm btn-danger"
                                                        data-effect="effect-scale"
@@ -103,6 +104,7 @@
                                                        data-toggle="modal" href="#modaldemo8" title="حذف"><i
                                                             class="las la-trash"></i></a>
                                                 @endcan
+                                                @endif
                                             </td>
                                         </tr>
                                     @endif

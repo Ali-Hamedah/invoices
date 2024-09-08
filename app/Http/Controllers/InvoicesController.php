@@ -314,7 +314,7 @@ class InvoicesController extends Controller
 
         ]);
 
-        session()->flash('Add', 'تم تعديل الفاتورة بنجاح');
+        session()->flash('Edit', __('messages.Invoice_Updated_Successfully'));
         return back();
     }
 

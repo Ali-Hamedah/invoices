@@ -24,4 +24,13 @@ return [
     'The_account_inactive' => 'Das Konto ist inaktiv. Bitte wenden Sie sich an den Administrator.',
     'empty_password' => 'Lassen Sie das Feld leer, wenn Sie das Passwort nicht ändern möchten',
 
+    'Invoice_Updated_Successfully' => 'Die Rechnung wurde erfolgreich bearbeitet',
+    'Added_successfully' => 'Erfolgreich hinzugefügt',
+    'Updated_successfully' => 'Erfolgreich aktualisiert',
+    'Delete_successfully' => 'Erfolgreich gelöscht',
+
+
+ 
+
+
 ];

@@ -193,31 +193,33 @@
         </div>
     </div>
     <!-- End Edit -->
-    <!-- delete -->
-    <div class="modal" id="modaldemo9">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content modal-content-demo">
-                <div class="modal-header">
-                    <h6 class="modal-title">{{__('dashboard.Delete')}}</h6>
-                    <button aria-label="Close" class="close" data-dismiss="modal"
-                            type="button"><span aria-hidden="true">&times;</span></button>
-                </div>
-                <form action="sections/destroy" method="post">
-                    {{ method_field('delete') }}
-                    {{ csrf_field() }}
-                    <div class="modal-body">
-                        <p>{{__('messages.Delete_Confirmation')}} </p><br>
-                        <input type="hidden" name="id" id="id" value="">
-                        <input class="form-control" name="section_name" id="section_name" type="text" readonly>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">{{__('messages.Confirm')}}</button>
-                        <button type="submit" class="btn btn-danger">{{__('messages.Cancel')}}</button>
-                    </div>
-            </div>
-            </form>
-        </div>
-    </div>
+  <!-- delete -->
+  <div class="modal fade" id="modaldemo9" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+ <div class="modal-dialog" role="document">
+     <div class="modal-content">
+         <div class="modal-header">
+             <h5 class="modal-title"> {{__('dashboard.Delete_Section')}}</h5>
+             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                 <span aria-hidden="true">&times;</span>
+             </button>
+         </div>
+         <form action="{{route('sections.destroy', $section->id)}}" method="post">
+            {{ method_field('delete') }}
+            {{ csrf_field() }}
+             <div class="modal-body">
+                 <p>{{__('messages.Delete_Confirmation')}} </p><br>
+                 <input type="hidden" name="id" id="id" value="">
+                 <input class="form-control" name="section_name" id="section_name" type="text" readonly>
+             </div>
+             <div class="modal-footer">
+                 <button type="button" class="btn btn-secondary" data-dismiss="modal">{{__('messages.Cancel')}}</button>
+                 <button type="submit" class="btn btn-danger">{{__('invoices.Save')}}</button>
+             </div>
+         </form>
+     </div>
+ </div>
+</div>
 
     <!-- Container closed -->
     </div>

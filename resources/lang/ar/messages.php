@@ -26,4 +26,12 @@ return [
     'The_account_inactive' => 'الحساب غير نشط. الرجى التواصل مع المدير',
     'empty_password' => 'اترك الحقل فارغًا إذا كنت لا ترغب في تغيير كلمة المرور',
 
+    'Invoice_Updated_Successfully' => 'تم تعديل الفاتورة بنجاح',
+    'Added_successfully' => 'تمت الإضافة بنجاح',
+    'Updated_successfully' => 'تم التعديل بنجاح',
+    'Delete_successfully' => 'تم الحذف بنجاح',
+
+
+
+
 ];

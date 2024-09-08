@@ -43,8 +43,8 @@ class SectionsController extends Controller
             'section_name' => 'required|unique:sections|max:255',
         ], [
 
-            'section_name.required' => 'يرجي ادخال اسم القسم',
-            'section_name.unique' => 'اسم القسم مسجل مسبقا',
+            'section_name.required' => __('validation.required'),
+            'section_name.unique' => __('validation.unique'),
 
 
         ]);
@@ -106,8 +106,8 @@ class SectionsController extends Controller
             'section_name' => 'required|unique:sections|max:255',
         ], [
 
-            'section_name.required' => 'يرجي ادخال اسم القسم',
-            'section_name.unique' => 'اسم القسم مسجل مسبقا',
+            'section_name.required' => __('validation.required'),
+            'section_name.unique' => __('validation.unique'),
 
 
         ]);
@@ -119,7 +119,7 @@ class SectionsController extends Controller
             'description' => $request->description,
         ]);
 
-        session()->flash('edit', 'تم تعديل القسم بنجاج');
+        session()->flash('edit', __('messages.Updated_successfully'));
         return redirect('/sections');
     }
 
@@ -133,6 +133,6 @@ class SectionsController extends Controller
     {
         // $id = $request -> id;
         sections::find($request->id)->delete();
-        return redirect()->back()->with(['delete' => 'تم الحذف بنجاح']);
+        return redirect()->back()->with(['delete' => __('messages.Delete_successfully')]);
     }
 }

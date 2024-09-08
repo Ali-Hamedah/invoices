@@ -32,7 +32,7 @@
         <script>
             window.onload = function() {
                 notif({
-                    msg: "تم حذف الفاتورة بنجاح",
+                    msg: {{__('messages.Delete_successfully')}},
                     type: "success"
                 })
             }
@@ -42,7 +42,7 @@
         <script>
             window.onload = function() {
                 notif({
-                    msg: "تم تحديث  بنجاح",
+                    msg: {{__('messages.Updated_successfully')}},
                     type: "success"
                 })
             }

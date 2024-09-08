@@ -24,9 +24,9 @@
     <!-- breadcrumb -->
 @endsection
 @section('content')
-    @if (session()->has('Add'))
+    @if (session()->has('Edit'))
         <div class="alert alert-success alert-dismissible fade show" role="alert">
-            <strong>{{ session()->get('Add') }}</strong>
+            <strong>{{ session()->get('Edit') }}</strong>
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>

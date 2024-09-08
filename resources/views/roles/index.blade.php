@@ -91,13 +91,13 @@
                                             <a class="btn btn-success btn-sm"
                                                href="{{ route('roles.show', $role->id) }}">{{__('dashboard.View')}}</a>
                                         @endcan
-
+                                        @if ($role->name !== 'owner')
                                         @can('edit permission')
                                             <a class="btn btn-primary btn-sm"
                                                href="{{ route('roles.edit', $role->id) }}">{{__('dashboard.Edit')}}</a>
                                         @endcan
 
-                                        @if ($role->name !== 'owner')
+                                       
                                             @can('delete permission')
                                                 {!! Form::open(['method' => 'DELETE', 'route' => ['roles.destroy',
                                                 $role->id], 'style' => 'display:inline']) !!}
