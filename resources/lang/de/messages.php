@@ -2,36 +2,26 @@
 
 return [
 
-    /*
-    |--------------------------------------------------------------------------
-    | Pagination Language Lines
-    |--------------------------------------------------------------------------
-    |
-    | The following language lines are used by the paginator library to build
-    | the simple pagination links. You are free to change them to anything
-    | you want to customize your views to better match your application.
-    |
-    */
-
-    'login' => 'login ',
-    'register' => 'register ',
-    'logout' => 'logout ',
-    'password' => 'password',
-    'Confirm_Password' => 'Confirm Password',
-    'Active' => 'Active',
-    'Inactive' => 'Inactive',
+    'login' => 'Anmelden',
+    'register' => 'Registrieren',
+    'logout' => 'Abmelden',
+    'password' => 'Passwort',
+    'Confirm_Password' => 'Passwort bestätigen',
+    'Active' => 'Aktiv',
+    'Inactive' => 'Inaktiv',
     'Name' => 'Name',
-    'Back' => 'Back',
+    'Back' => 'Zurück',
 
-    'Invoices' => 'Invoices',
-    'Reports' => ' Reports',
-    'Users' => ' Users',
-    'Settings' => ' Settings',
-    'Cancel' => 'Cancel',
-    'Confirm' => 'Confirm',
-    'Delete_Confirmation' => 'Are you sure you want to delete?',
-    'Archive_Confirmation' => 'Are you sure you want to archive?',
-    'Unarchive_Confirmation' => 'Are you sure you want to unarchive the invoice?',
-    'The_account_inactive' => 'The account is inactive. Please contact the administrator.',
-    'empty_password' => 'Leave the field blank if you do not want to change the password',
+    'Invoices' => 'Rechnungen',
+    'Reports' => 'Berichte',
+    'Users' => 'Benutzer',
+    'Settings' => 'Einstellungen',
+    'Cancel' => 'Abbrechen',
+    'Confirm' => 'Bestätigen',
+    'Delete_Confirmation' => 'Sind Sie sicher, dass Sie löschen möchten?',
+    'Archive_Confirmation' => 'Sind Sie sicher, dass Sie archivieren möchten?',
+    'Unarchive_Confirmation' => 'Sind Sie sicher, dass Sie die Rechnung aus dem Archiv holen möchten?',
+    'The_account_inactive' => 'Das Konto ist inaktiv. Bitte wenden Sie sich an den Administrator.',
+    'empty_password' => 'Lassen Sie das Feld leer, wenn Sie das Passwort nicht ändern möchten',
+
 ];

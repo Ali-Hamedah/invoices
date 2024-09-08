@@ -58,6 +58,7 @@ return [
 'Add' => 'Add',
 'Edit' => 'Edit',
 'View' => 'View',
+'Download' => 'Download',
 'Delete' => 'Delete',
 'Permission' => 'Permission',
 'Select_Section' => 'Select Section',

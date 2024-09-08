@@ -53,10 +53,10 @@
                                 <!-- Tabs -->
                                 <ul class="nav panel-tabs">
                                     <li class=""><a href="#tab11" class="active" data-toggle="tab"><i
-                                                class="fa fa-laptop"></i> معلومات الفاتورة</a></li>
-                                    <li><a href="#tab12" data-toggle="tab"><i class="fa fa-cube"></i> حالات الدفع</a>
+                                                class="fa fa-laptop"></i> {{__('invoices.Invoice_Info')}}</a></li>
+                                    <li><a href="#tab12" data-toggle="tab"><i class="fa fa-cube"></i> {{__('invoices.Status')}}</a>
                                     </li>
-                                    <li><a href="#tab13" data-toggle="tab"><i class="fa fa-cogs"></i> المرفقات</a></li>
+                                    <li><a href="#tab13" data-toggle="tab"><i class="fa fa-cogs"></i> {{__('invoices.Attachments')}}</a></li>
 
                                 </ul>
                             </div>
@@ -70,36 +70,36 @@
                                             <tbody>
 
                                             <tr>
-                                                <th scope="row">رقم الفاتورة</th>
+                                                <th scope="row"> {{__('invoices.Invoice_Number')}}</th>
                                                 <td>{{ $invoices->invoice_number }}</td>
-                                                <th scope="row">تاريخ الاصدار</th>
+                                                <th scope="row"> {{__('invoices.Invoice_Date')}}</th>
                                                 <td>{{$invoices-> invoice_Date}}</td>
-                                                <th scope="row">تاريخ الاستحقاق</th>
+                                                <th scope="row"> {{__('invoices.Due_Date')}}</th>
                                                 <td>{{$invoices-> Due_date}}</td>
-                                                <th scope="row">القسم</th>
+                                                <th scope="row">{{__('dashboard.Sections')}}</th>
                                                 <td>{{$invoices-> sections-> section_name}}</td>
                                             </tr>
 
                                             <tr>
-                                                <th scope="row">المنتج</th>
+                                                <th scope="row">{{__('dashboard.Products')}}</th>
                                                 <td>{{$invoices-> product}}</td>
-                                                <th scope="row">مبلغ التحصيل</th>
+                                                <th scope="row">  {{__('invoices.Collection_Amount')}}</th>
                                                 <td>{{$invoices-> Amount_collection}}</td>
-                                                <th scope="row">مبلغ العمولة</th>
+                                                <th scope="row"> {{__('invoices.Commission_Amount')}}</th>
                                                 <td>{{$invoices-> Amount_Commission}}</td>
-                                                <th scope="row">الخصم</th>
+                                                <th scope="row">{{__('invoices.Discount')}}</th>
                                                 <td>{{$invoices-> Discount}}</td>
                                             </tr>
 
 
                                             <tr>
-                                                <th scope="row">نسبة الضريبة</th>
+                                                <th scope="row"> {{__('invoices.Tax_Rate')}}</th>
                                                 <td>{{$invoices-> Rate_VAT}}</td>
-                                                <th scope="row">قيمة الضريبة</th>
+                                                <th scope="row"> {{__('invoices.Tax_Value')}}</th>
                                                 <td>{{$invoices-> Value_VAT}}</td>
-                                                <th scope="row">الاجمالي مع الضريبة</th>
+                                                <th scope="row">{{__('invoices.Total_Including_Tax')}} </th>
                                                 <td>{{$invoices-> Total}}</td>
-                                                <th scope="row">الحالة الحالية</th>
+                                                <th scope="row"> {{__('invoices.The_current_status')}}</th>
 
                                                 @if($invoices-> Value_Status == 1)
                                                     <td><span
@@ -118,7 +118,7 @@
                                             </tr>
 
                                             <tr>
-                                                <th scope="row">ملاحظات</th>
+                                                <th scope="row">{{__('invoices.Notes')}}</th>
                                                 <td>{{$invoices-> note}}</td>
                                             </tr>
                                             </tbody>
@@ -134,14 +134,14 @@
                                             <thead>
                                             <tr class="text-dark">
                                                 <th>#</th>
-                                                <th>رقم الفاتورة</th>
-                                                <th>نوع المنتج</th>
-                                                <th>القسم</th>
-                                                <th>حالة الدفع</th>
-                                                <th>تاريخ الدفع</th>
-                                                <th>ملاحظات</th>
-                                                <th>تاريخ الاضافة</th>
-                                                <th>المستخدم</th>
+                                                <th> {{__('invoices.Invoice_Number')}}</th>
+                                                <th> {{__('invoices.Product')}}</th>
+                                                <th>{{__('invoices.Section')}}</th>
+                                                <th> {{__('invoices.Status')}}</th>
+                                                <th> {{__('invoices.Payment_date')}}</th>
+                                                <th>{{__('invoices.Notes')}}</th>
+                                                <th>{{__('invoices.Date_addition')}}</th>
+                                                <th>{{__('dashboard.Username')}}</th>
                                             </tr>
                                             </thead>
                                             <tbody>
@@ -186,8 +186,8 @@
                                     <div class="card card-statistics">
 
                                         <div class="card-body">
-                                            <p class="text-danger">* صيغة المرفق pdf, jpeg ,.jpg , png </p>
-                                            <h5 class="card-title">اضافة مرفقات</h5>
+                                            <p class="text-danger">*  {{__('invoices.Attachment_format')}} pdf, jpeg ,.jpg , png </p>
+                                            <h5 class="card-title"> {{__('invoices.Add_attachments')}}</h5>
                                             <form method="post" action="{{ url('/InvoiceAttachments') }}"
                                                   enctype="multipart/form-data">
                                                 {{ csrf_field() }}
@@ -198,12 +198,12 @@
                                                            value="{{ $invoices->invoice_number }}">
                                                     <input type="hidden" id="invoice_id" name="invoice_id"
                                                            value="{{ $invoices->id }}">
-                                                    <label class="custom-file-label" for="customFile">حدد
-                                                        المرفق</label>
+                                                    <label class="custom-file-label" for="customFile">
+                                                        {{__('invoices.Select_attachment')}}</label>
                                                 </div>
                                                 <br><br>
                                                 <button type="submit" class="btn btn-primary btn-sm "
-                                                        name="uploadedFile">تاكيد
+                                                        name="uploadedFile">{{__('messages.Confirm')}}
                                                 </button>
                                             </form>
                                         </div>
@@ -215,10 +215,10 @@
                                                 <thead>
                                                 <tr class="text-dark">
                                                     <th>#</th>
-                                                    <th>اسم الملف</th>
-                                                    <th>قام بالاضافه</th>
-                                                    <th>تاريخ الاضافه</th>
-                                                    <th>العمليات</th>
+                                                    <th>  {{__('invoices.File_name')}}</th>
+                                                    <th> {{__('dashboard.Username')}}</th>
+                                                    <th> {{__('invoices.Date_addition')}}</th>
+                                                    <th>{{__('invoices.Notes')}}</th>
 
                                                 </tr>
                                                 </thead>
@@ -237,13 +237,13 @@
                                                             <a class="btn btn-outline-success btn-sm"
                                                                href="{{ url('View_file') }}/{{ $invoices->invoice_number }}/{{ $attachment->file_name }}"
                                                                role="button"><i class="fas fa-eye"></i>&nbsp;
-                                                                عرض</a>
+                                                               {{__('dashboard.View')}}</a>
 
                                                             <a class="btn btn-outline-info btn-sm"
                                                                href="{{ url('download') }}/{{ $invoices->invoice_number }}/{{ $attachment->file_name }}"
                                                                role="button"><i
                                                                     class="fas fa-download"></i>&nbsp;
-                                                                تحميل</a>
+                                                                    {{__('dashboard.Download')}}</a>
 
 
                                                             <button class="btn btn-outline-danger btn-sm"
@@ -252,7 +252,7 @@
                                                                     data-file_name="{{ $attachment->file_name }}"
                                                                     data-invoice_number="{{ $attachment->invoice_number }}"
                                                                     data-id_file="{{ $attachment->id }}"
-                                                                    data-target="#delete_file">حذف
+                                                                    data-target="#delete_file">{{__('dashboard.Delete')}}
                                                             </button>
 
 
@@ -279,7 +279,7 @@
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">حذف المرفق</h5>
+                            <h5 class="modal-title" id="exampleModalLabel"> {{__('dashboard.Download')}}</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
@@ -289,7 +289,7 @@
                             {{ csrf_field() }}
                             <div class="modal-body">
                                 <p class="text-center">
-                                <h6 style="color:red"> هل انت متاكد من عملية حذف المرفق ؟</h6>
+                                <h6 style="color:red"> {{__('messages.Delete_Confirmation')}}</h6>
                                 </p>
 
                                 <input type="hidden" name="id_file" id="id_file" value="">
@@ -298,8 +298,8 @@
 
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">الغاء</button>
-                                <button type="submit" class="btn btn-danger">تاكيد</button>
+                                <button type="button" class="btn btn-default" data-dismiss="modal">{{__('messages.Cancel')}}</button>
+                                <button type="submit" class="btn btn-danger">{{__('messages.Confirm')}}</button>
                             </div>
                         </form>
                     </div>

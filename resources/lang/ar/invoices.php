@@ -23,6 +23,14 @@ return [
 'Attachments' => 'المرفقات',
 'Attachment_Format_Info' => 'معلومات تنسيق المرفق',
 'Collection_Invoice' => 'فاتورة تحصيل',
+'The_current_status' => 'الحالة الحالية',
+'Payment_date' => 'تاريخ الدفع',
+'Date_addition' => 'تاريخ الاضافة',
+'Add_attachments' => 'اضافة مرفقات',
+'Attachment_format' => 'صيغة المرفق',
+'Select_attachment' => 'حدد المرفق',
+'File_name' => 'اسم الملف',
+'Download' => 'تحميل',
 
 
     'Print_Invoice' => 'طباعة فاتورة',
@@ -37,6 +45,8 @@ return [
     'Send_Invoice' => 'إرسال الفاتورة',
     'Export_PDF' => 'تصدير PDF',
     'Archive_Success' => 'تم أرشفة الفاتورة بنجاح',
+
+    'Invoice_details' => 'تفاصيل الفاتوره',
 
  
 

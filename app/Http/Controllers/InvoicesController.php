@@ -110,15 +110,20 @@ class InvoicesController extends Controller
             $request->pic->move(public_path('Attachments/' . $invoice_number), $imageName);
         }
 
-        //send email
-        $user = User::first();
-        Notification::send($user, new AddInvoice($invoice_id));
+        // //send email
+        // $user = User::first();
+        // Notification::send($user, new AddInvoice($invoice_id));
 
         //notification
         //$user = User::find(Auth::user()->id); // اشعار للشخص الذي عمل الفاتورة فقط
-        $user = User::get();// اشعار للكل
+      
         $invoices = invoices::latest()->first();
-        Notification::send($user, new \App\Notifications\Add_invoice_new($invoices));
+       // إرسال إشعار للمستخدمين
+       $users = User::all(); // جميع المستخدمين
+       foreach ($users as $user) {
+           // إرسال الإشعار لكل مستخدم
+           Notification::send($user, new \App\Notifications\Add_invoice_new($invoices));
+       }
 
         session()->flash('Add', 'تم اضافة الفاتورة بنجاح');
         return back();

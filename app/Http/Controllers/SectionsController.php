@@ -11,8 +11,7 @@ class SectionsController extends Controller
 {
     function __construct()
     {
-        $this->middleware('permission:الاقسام', ['only' => ['index']]);
-
+        $this->middleware('permission:categories', ['only' => ['index']]);
     }
 
     /**
@@ -23,8 +22,12 @@ class SectionsController extends Controller
     public function index()
     {
         //$sections = sections::all();
-        $sections = sections::select('id', 'section_name', 'description',
-            'created_by')->get();
+        $sections = sections::select(
+            'id',
+            'section_name',
+            'description',
+            'created_by'
+        )->get();
         return view('sections.sections', compact('sections'));
     }
 
@@ -56,7 +59,6 @@ class SectionsController extends Controller
         //session()->flash('Add', 'تم اضافة القسم بنجاح ');
         //return redirect('/sections');
         return redirect()->back()->with(['Add' => 'تم اضافه القسم بنجاح ']);
-
     }
 
     /**
@@ -132,7 +134,5 @@ class SectionsController extends Controller
         // $id = $request -> id;
         sections::find($request->id)->delete();
         return redirect()->back()->with(['delete' => 'تم الحذف بنجاح']);
-
-
     }
 }

@@ -69,7 +69,7 @@
             <div class="card mg-b-20">
                 <div class="card-header pb-0">
                     <div class="d-flex justify-content-between">
-                        @can('اضافة قسم')
+                        @can('add category')
                             <a class="modal-effect btn btn-outline-primary btn-buy " data-effect="effect-scale"
                                data-toggle="modal" href="#modaldemo1"> {{__('dashboard.Add_Section')}}</a>
                         @endcan
@@ -96,7 +96,7 @@
                                     <td>{{$section -> section_name}}</td>
                                     <td>{{$section -> description}}</td>
                                     <td>
-                                        @can('تعديل قسم')
+                                        @can('edit category')
                                             <a class="modal-effect btn btn-sm btn-info" data-effect="effect-scale"
                                                data-id="{{ $section->id }}"
                                                data-section_name="{{ $section->section_name }}"
@@ -104,7 +104,7 @@
                                                href="#exampleModal2" title="تعديل"><i class="las la-pen"></i></a>
                                         @endcan
 
-                                        @can('حذف قسم')
+                                        @can('delete category')
                                             <a class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale"
                                                data-id="{{ $section->id }}"
                                                data-section_name="{{ $section->section_name }}"

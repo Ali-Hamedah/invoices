@@ -19,7 +19,7 @@ class CreateAdminUserSeeder extends Seeder
             'email' => 'admin@ali.com',
             'password' => bcrypt('123456'),
             'roles_name' => ["owner"],
-            'Status' => 'مفعل',
+            'Status' => 'Active',
         ]);
 
         $role = Role::create(['name' => 'owner']);

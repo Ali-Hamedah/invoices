@@ -127,10 +127,10 @@
                     <tr>
                         <td>
                             Acme Corp.<br/>
-                            رقم الفاتورة : {{ $invoices->invoice_number }}<br/>
-                            تاريخ الاصدار : {{ $invoices->invoice_Date }}<br/>
-                            تاريخ الاستحقاق : {{ $invoices->Due_date }}<br/>
-                            القسم : {{ $invoices->sections->section_name }}
+                            {{__('invoices.Invoice_Number')}}: {{ $invoices->invoice_number }}<br/>
+                            {{__('invoices.Date_addition')}} : {{ $invoices->invoice_Date }}<br/>
+                            {{__('invoices.Due_Date')}}: {{ $invoices->Due_date }}<br/>
+                            {{__('invoices.Section')}} : {{ $invoices->sections->section_name }}
                         </td>
 
                         <td>
@@ -142,8 +142,8 @@
         </tr>
 
         <tr class="heading">
-            <td>المنتج</td>
-            <td>مبلغ التحصيل</td>
+            <td>{{__('invoices.Product')}}</td>
+            <td> {{__('invoices.Collection_Amount')}}</td>
 
         </tr>
 
@@ -155,7 +155,7 @@
         </tr>
 
         <tr class="heading">
-            <td>التكاليف</td>
+            <td>Prices</td>
 
             <td>Price</td>
         </tr>
@@ -163,19 +163,19 @@
         <tr class="item">
             <td>{{ $invoices->Amount_Commission }}</td>
 
-            <td>مبلغ العموله</td>
+            <td> {{__('invoices.Commission_Amount')}}</td>
         </tr>
 
         <tr class="item">
             <td>{{ $invoices->Rate_VAT }}</td>
 
-            <td>نسبة الضريبة</td>
+            <td> {{__('invoices.Tax_Rate')}}</td>
         </tr>
 
         <tr class="item last">
             <td>{{ $invoices->Discount }}</td>
 
-            <td>قيمة الخصم</td>
+            <td> {{__('invoices.Tax_Value')}}</td>
         </tr>
 
         <tr class="total">

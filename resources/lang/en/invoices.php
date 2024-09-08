@@ -23,6 +23,13 @@ return [
 'Attachments' => 'Attachments',
 'Attachment_Format_Info' => 'Attachment Format Info',
 'Collection_Invoice' => 'Collection Invoice',
+'The_current_status' => 'The current status',
+'Payment_date' => 'Payment date',
+'Date_addition' => 'Date of addition',
+'Add_attachments' => 'Add attachments',
+'Attachment_format' => 'Attachment format',
+'Select_attachment' => 'Select the attachment',
+'Download' => 'Download',
 
 'Print_Invoice' => 'Print Invoice',
     'Invoice_System' => 'Invoice System',
@@ -36,6 +43,8 @@ return [
     'Send_Invoice' => 'Send Invoice',
     'Export_PDF' => 'Export PDF',
     'Archive_Success' => 'Invoice archived successfully',
+
+    'Invoice_details' => 'Invoice details',
 
 
 

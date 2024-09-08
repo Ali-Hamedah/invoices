@@ -120,18 +120,18 @@
                                                     type="button">{{ __('invoices.Actions') }}<i class="fas fa-caret-down ml-1"></i>
                                             </button>
                                             <div class="dropdown-menu tx-13">
-                                                @can('تعديل الفاتورة')
+                                                @can('edit invoice')
                                                     <a class="dropdown-item"
                                                        href=" {{ route('edit_invoice',['id' => $invoice->id]) }}"><i
                                                        class="text-primary fas fa-edit"></i>&nbsp;&nbsp;{{ __('dashboard.Edit_Invoice') }}</a>
                                                 @endcan
-                                                @can('حذف الفاتورة')
+                                                @can('delete invoice')
                                                     <a class="dropdown-item" href="#"
                                                        data-invoice_id="{{ $invoice->id }}"
                                                        data-toggle="modal" data-target="#delete_invoice"><i
                                                             class="text-danger fas fa-trash-alt"></i>&nbsp;&nbsp;{{ __('dashboard.Delete_Invoice') }}</a>
                                                 @endcan
-                                                @can('تغير حالة الدفع')
+                                                @can('change payment status')
                                                     <a class="dropdown-item"
                                                        href="{{ route('Status_show', [$invoice->id]) }}"><i
                                                             class=" text-success fas fa-money-bill"></i>&nbsp;&nbsp;{{ __('dashboard.Change_Payment_Status') }}</a>

@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\invoice_attachments;
 use App\invoices;
 use App\invoices_detalis;
+use App\invoice_attachments;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class InvoicesDetalisController extends Controller
@@ -59,12 +61,20 @@ class InvoicesDetalisController extends Controller
      * @param invoices_detalis $invoices_detalis
      * @return Response
      */
-    public function edit($id)
+    public function edit($id, $notification_id)
     {
+
+     
         $invoices = invoices::where('id', $id)->first();
         $details = invoices_detalis::where('id_Invoice', $id)->get();
         $attachments = invoice_attachments::where('invoice_id', $id)->get();
+           // جلب الإشعار حسب المعرف الخاص به
+      $notification = Auth::user()->notifications()->where('id', $notification_id)->first();
 
+      // إذا كان الإشعار موجودًا، نقوم بتحديث حالته إلى "مقروء"
+      if ($notification) {
+          $notification->markAsRead();
+      }
         return view('invoices.details_invoice', compact('invoices', 'details', 'attachments'));
     }
 

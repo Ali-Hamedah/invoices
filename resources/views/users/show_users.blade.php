@@ -43,7 +43,7 @@
             <div class="card">
                 <div class="card-header pb-0">
                     <div class="col-sm-1 col-md-2">
-                        @can('اضافة مستخدم')
+                        @can('add user')
                             <a class="btn btn-primary btn-sm" href="{{ route('users.create') }}"> {{__('dashboard.Add_User')}} </a>
                         @endcan
                     </div>
@@ -91,12 +91,12 @@
                                             </td>
 
                                             <td>
-                                                @can('تعديل مستخدم')
+                                                @can('edit user')
                                                     <a href="{{ route('users.edit', $user->id) }}"
                                                        class="btn btn-sm btn-info"
                                                        title="تعديل"><i class="las la-pen"></i></a>
                                                 @endcan
-                                                @can('حذف مستخدم')
+                                                @can('delete user')
                                                     <a class="modal-effect btn btn-sm btn-danger"
                                                        data-effect="effect-scale"
                                                        data-user_id="{{ $user->id }}" data-username="{{ $user->name }}"
@@ -138,12 +138,12 @@
                                         </td>
 
                                         <td>
-                                            @can('تعديل مستخدم')
+                                            @can('edit user')
                                                 <a href="{{ route('users.edit', $user->id) }}"
                                                    class="btn btn-sm btn-info"
                                                    title="{{__('dashboard.Edit_User')}}"><i class="las la-pen"></i></a>
                                             @endcan
-                                            @can('حذف مستخدم')
+                                            @can('delete user')
                                                 <a class="modal-effect btn btn-sm btn-danger"
                                                    data-effect="effect-scale"
                                                    data-user_id="{{ $user->id }}"

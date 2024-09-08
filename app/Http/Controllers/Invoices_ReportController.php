@@ -9,7 +9,7 @@ class Invoices_ReportController extends Controller
 {
     function __construct()
     {
-        $this->middleware('permission:تقرير الفواتير', ['only' => ['index']]);
+        $this->middleware('permission:invoices report', ['only' => ['index']]);
 
 
     }

@@ -57,6 +57,7 @@ return [
 'Add' => 'اضافة',
 'Edit' => 'تعديل',
 'View' => 'عرض',
+'Download' => 'تحميل',
 'Delete' => 'حذف',
 'Permission' => 'حدد القسم',
 'Select_Section' => 'حدد القسم',

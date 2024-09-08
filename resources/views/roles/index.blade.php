@@ -62,7 +62,7 @@
                     <div class="d-flex justify-content-between">
                         <div class="col-lg-12 margin-tb">
                             <div class="pull-right">
-                                @can('اضافة صلاحية')
+                                @can('add permission')
                                     <a class="btn btn-primary btn-sm" href="{{ route('roles.create') }}"> {{__('dashboard.Add')}}</a>
                                 @endcan
                             </div>
@@ -87,18 +87,18 @@
                                     <td>{{ ++$i }}</td>
                                     <td>{{ $role->name }}</td>
                                     <td>
-                                        @can('عرض صلاحية')
+                                        @can('view permission')
                                             <a class="btn btn-success btn-sm"
                                                href="{{ route('roles.show', $role->id) }}">{{__('dashboard.View')}}</a>
                                         @endcan
 
-                                        @can('تعديل صلاحية')
+                                        @can('edit permission')
                                             <a class="btn btn-primary btn-sm"
                                                href="{{ route('roles.edit', $role->id) }}">{{__('dashboard.Edit')}}</a>
                                         @endcan
 
                                         @if ($role->name !== 'owner')
-                                            @can('حذف صلاحية')
+                                            @can('delete permission')
                                                 {!! Form::open(['method' => 'DELETE', 'route' => ['roles.destroy',
                                                 $role->id], 'style' => 'display:inline']) !!}
                                                 {!! Form::submit(__('dashboard.Delete'), ['class' => 'btn btn-danger btn-sm']) !!}

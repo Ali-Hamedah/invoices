@@ -12,7 +12,7 @@ class ProductController extends Controller
 
     function __construct()
     {
-        $this->middleware('permission:المنتجات', ['only' => ['index']]);
+        $this->middleware('permission:products', ['only' => ['index']]);
 
     }
 

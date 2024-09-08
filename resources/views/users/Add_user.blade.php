@@ -107,7 +107,7 @@
                             </div>
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-                            <button class="btn btn-main-primary pd-x-20" type="submit">تاكيد</button>
+                            <button class="btn btn-main-primary pd-x-20" type="submit">{{__('messages.Confirm')}}</button>
                         </div>
                     </form>
                 </div>

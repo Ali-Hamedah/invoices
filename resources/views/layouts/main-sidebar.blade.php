@@ -41,7 +41,7 @@
                     <span class="side-menu__label">{{__('dashboard.Home')}}</span><span
                         class="badge badge-success side-badge"></span></a>
             </li>
-            @can('الفواتير')
+            @can('invoices')
                 <li class="slide">
                     <a class="side-menu__item" data-toggle="slide" href="{{ url('/' . ($page = '#')) }}">
                         <svg
@@ -54,25 +54,25 @@
 
                         <span class="side-menu__label">{{__('dashboard.Invoices')}}</span><i class="angle fe fe-chevron-down"></i></a>
                     <ul class="slide-menu">
-                        @can('قائمة الفواتير')
+                        @can('invoices list')
                             <li><a class="slide-item" href="{{ route('invoices.index') }}"> {{__('dashboard.Invoice_List')}}</a>
                             </li>
                         @endcan
-                        @can('الفواتير المدفوعة')
+                        @can('paid invoices')
                             <li><a class="slide-item" href="{{ route('Invoice_Paid') }}">
                                 {{__('dashboard.Paid_Invoices')}}</a>
                             </li>
                         @endcan
-                        @can('الفواتير المدفوعة جزئيا')
+                        @can('partially paid invoices')
                             <li><a class="slide-item" href="{{ route('Invoice_Partial') }}">
                                 {{__('dashboard.Partially_Paid_Invoices')}}
                                     </a></li>
                         @endcan
-                        @can('الفواتير الغير مدفوعة')
+                        @can('unpaid invoices')
                             <li><a class="slide-item" href="{{ route('Invoice_unPaid') }}"> 
                                 {{__('dashboard.Unpaid_Invoices')}}</a></li>
                         @endcan
-                        @can('ارشيف الفواتير')
+                        @can('invoices archive')
                             <li><a class="slide-item" href="{{ route('archive.index') }}">{{__('dashboard.Invoice_Archive')}}  </a>
                             </li>
                         @endcan
@@ -81,7 +81,7 @@
 
                 </li>
             @endcan
-            @can('التقارير')
+            @can('reports')
                 <li class="slide">
                     <a class="side-menu__item" data-toggle="slide" href="{{ url('/' . ($page = '#')) }}">
                         <svg
@@ -94,12 +94,12 @@
 
                         <span class="side-menu__label">{{__('dashboard.Reports')}}</span><i class="angle fe fe-chevron-down"></i></a>
                     <ul class="slide-menu">
-                        @can('تقرير الفواتير')
+                        @can('invoices report')
                             <li><a class="slide-item" href="{{ route('invoices_report') }}">
                                 {{__('dashboard.Invoice_Report')}}</a>
                             </li>
                         @endcan
-                        @can('تقرير العملاء')
+                        @can('customers report')
                             <li><a class="slide-item" href="{{ route('customers_report') }}">
                                 {{__('dashboard.Client_Report')}}</a>
                             </li>
@@ -108,7 +108,7 @@
 
                 </li>
             @endcan
-            @can('المستخدمين')
+            @can('users')
                 <li class="slide">
                     <a class="side-menu__item" data-toggle="slide" href="{{ url('/' . ($page = '#')) }}">
                         <svg
@@ -120,17 +120,17 @@
                         </svg>
                         <span class="side-menu__label">{{__('dashboard.Users')}}</span><i class="angle fe fe-chevron-down"></i></a>
                     <ul class="slide-menu">
-                        @can('قائمة المستخدمين')
+                        @can('users list')
                             <li><a class="slide-item" href="{{ route('users.index') }}">{{__('dashboard.User_List')}}</a></li>
                         @endcan
-                        @can('صلاحيات المستخدمين')
+                        @can('users permissions')
                             <li><a class="slide-item" href="{{ route('roles.index') }}">
                                 {{__('dashboard.User_Permissions')}}</a></li>
                         @endcan
                     </ul>
                 </li>
             @endcan
-            @can('الاعدادات')
+            @can('settings')
                 <li class="slide">
                     <a class="side-menu__item" data-toggle="slide" href="{{ url('/' . ($page = '#')) }}">
                         <svg
@@ -162,10 +162,10 @@
                         <span class="side-menu__label">{{__('dashboard.Settings')}}</span><i class="angle fe fe-chevron-down"></i></a>
                     <ul class="slide-menu">
 
-                        @can('المنتجات')
+                        @can('products')
                             <li><a class="slide-item" href="{{ url('/' . ($page = 'products')) }}">{{__('dashboard.Products')}}</a></li>
                         @endcan
-                        @can('الاقسام')
+                        @can('categories')
                             <li><a class="slide-item" href="{{ url('/' . ($page = 'sections')) }}">{{__('dashboard.Sections')}}</a></li>
                         @endcan
                     </ul>
