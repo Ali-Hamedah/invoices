@@ -36,6 +36,7 @@ return [
     'Send_Invoice' => 'Rechnung senden',
     'Export_PDF' => 'Als PDF exportieren',
     'Archive_Success' => 'Rechnung erfolgreich archiviert',
+    'Generated_automatically' => 'Automatisch generiert ',
     
     ];
     

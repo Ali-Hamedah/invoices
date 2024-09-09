@@ -45,8 +45,8 @@ return [
     'Send_Invoice' => 'إرسال الفاتورة',
     'Export_PDF' => 'تصدير PDF',
     'Archive_Success' => 'تم أرشفة الفاتورة بنجاح',
-
     'Invoice_details' => 'تفاصيل الفاتوره',
+    'Generated_automatically' => 'يتم إنشاؤها تلقائيا',
 
  
 

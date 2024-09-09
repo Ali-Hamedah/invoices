@@ -43,8 +43,8 @@ return [
     'Send_Invoice' => 'Send Invoice',
     'Export_PDF' => 'Export PDF',
     'Archive_Success' => 'Invoice archived successfully',
-
     'Invoice_details' => 'Invoice details',
+    'Generated_automatically' => 'Generated automatically',
 
 
 

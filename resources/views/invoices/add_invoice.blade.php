@@ -62,7 +62,7 @@
                             <div class="col">
                                 <label for="inputName" class="control-label">{{ __('invoices.Invoice_Number') }}</label>
                                 <input type="text" class="form-control" id="inputName" name="invoice_number"
-                                       title="{{ __('invoices.Enter_Invoice_Number') }}" required>
+                                       title="{{ __('invoices.Enter_Invoice_Number') }}" placeholder="{{__('invoices.Generated_automatically')}}" readonly>
                             </div>
                         
                             <div class="col">

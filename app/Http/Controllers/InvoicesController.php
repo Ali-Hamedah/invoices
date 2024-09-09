@@ -2,23 +2,24 @@
 
 namespace App\Http\Controllers;
 
-use App\Exports\InvoicesExport;
-use App\invoice_attachments;
-use App\invoices;
-use App\invoices_detalis;
-use App\Notifications\AddInvoice;
-use App\Notifications\SendEmail;
-use App\product;
-use App\sections;
+use PDF;
 use App\User;
+use App\product;
+use App\invoices;
+use App\sections;
+use Carbon\Carbon;
+use App\invoices_detalis;
+use App\invoice_attachments;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use Illuminate\Support\Facades\Auth;
+use App\Exports\InvoicesExport;
+use App\Notifications\SendEmail;
+use App\Notifications\AddInvoice;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Notification;
-use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel;
-use PDF;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Notification;
 
 class InvoicesController extends Controller
 {
@@ -44,7 +45,6 @@ class InvoicesController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'invoice_number' => 'required|unique:invoices,invoice_number|max:255',
             'product' => 'required',
             'invoice_Date' => 'required',
             'Due_date' => 'required',
@@ -61,7 +61,7 @@ class InvoicesController extends Controller
         ]);
 
         invoices::create([
-            'invoice_number' => $request->invoice_number,
+           'invoice_number' => $this->generateInvoiceNumber(),
             'invoice_Date' => $request->invoice_Date,
             'Due_date' => $request->Due_date,
             'product' => $request->product,
@@ -80,7 +80,7 @@ class InvoicesController extends Controller
         $invoice_id = invoices::latest()->first()->id;
         invoices_detalis::create([
             'id_Invoice' => $invoice_id,
-            'invoice_number' => $request->invoice_number,
+            'invoice_number' => $this->generateInvoiceNumber(),
             'product' => $request->product,
             'Section' => $request->Section,
             'Status' => 'Unpaid',
@@ -96,7 +96,7 @@ class InvoicesController extends Controller
             $invoice_id = invoices::latest()->first()->id;
             $image = $request->file('pic');
             $file_name = $image->getClientOriginalName();
-            $invoice_number = $request->invoice_number;
+            $invoice_number =$this->generateInvoiceNumber();
 
             $attachments = new invoice_attachments();
             $attachments->file_name = $file_name;
@@ -388,5 +388,24 @@ class InvoicesController extends Controller
 
     }
 
+   // دالة لتوليد رقم الفاتورة
+   public function generateInvoiceNumber() {
+    do {
+        // الحصول على التاريخ الحالي
+        $now = Carbon::now();
+        $year = $now->format('Y');   // السنة
+        $month = $now->format('m');  // الشهر
+        $day = $now->format('d');    // اليوم
+
+        // توليد أربعة أرقام عشوائية
+        $randomNumber = str_pad(mt_rand(0, 9999), 4, '0', STR_PAD_LEFT);
+        // دمج الأجزاء لتكوين رقم الفاتورة النهائي
+        $invoiceNumber = $year . $month . $day . $randomNumber;
+        // التحقق من أن الرقم غير مكرر في قاعدة البيانات
+        $exists = DB::table('invoices')->where('invoice_number', $invoiceNumber)->exists();
+    } while ($exists); // استمر في التوليد حتى تجد رقمًا فريدًا
+
+    return $invoiceNumber;
+}
 
 }

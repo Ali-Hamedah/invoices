@@ -139,6 +139,7 @@
                                             @endif
                                         </td>
 
+                                        @if (auth()->user()->id !== $user->id && !$user->hasRole('owner'))
                                         <td>
                                             @can('edit user')
                                                 <a href="{{ route('users.edit', $user->id) }}"
@@ -154,6 +155,8 @@
                                                         class="las la-trash"></i></a>
                                             @endcan
                                         </td>
+                                       
+                                        @endif
                                     </tr>
                                 @endforeach
                             @endif
