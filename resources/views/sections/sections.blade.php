@@ -1,22 +1,24 @@
 @extends('layouts.master')
 @section('title')
-{{__('dashboard.Sections')}} -  {{__('dashboard.Invoice_System_Dashboard')}}
+    {{ __('dashboard.Sections') }} - {{ __('dashboard.Invoice_System_Dashboard') }}
 @stop
 @section('css')
+
     <!-- Internal Data table css -->
-    <link href="{{URL::asset('assets/plugins/datatable/css/dataTables.bootstrap4.min.css')}}" rel="stylesheet"/>
-    <link href="{{URL::asset('assets/plugins/datatable/css/buttons.bootstrap4.min.css')}}" rel="stylesheet">
-    <link href="{{URL::asset('assets/plugins/datatable/css/responsive.bootstrap4.min.css')}}" rel="stylesheet"/>
-    <link href="{{URL::asset('assets/plugins/datatable/css/jquery.dataTables.min.css')}}" rel="stylesheet">
-    <link href="{{URL::asset('assets/plugins/datatable/css/responsive.dataTables.min.css')}}" rel="stylesheet">
-    <link href="{{URL::asset('assets/plugins/select2/css/select2.min.css')}}" rel="stylesheet">
+    <link href="{{ URL::asset('assets/plugins/datatable/css/dataTables.bootstrap4.min.css') }}" rel="stylesheet" />
+    <link href="{{ URL::asset('assets/plugins/datatable/css/buttons.bootstrap4.min.css') }}" rel="stylesheet">
+    <link href="{{ URL::asset('assets/plugins/datatable/css/responsive.bootstrap4.min.css') }}" rel="stylesheet" />
+    <link href="{{ URL::asset('assets/plugins/datatable/css/jquery.dataTables.min.css') }}" rel="stylesheet">
+    <link href="{{ URL::asset('assets/plugins/datatable/css/responsive.dataTables.min.css') }}" rel="stylesheet">
+    <link href="{{ URL::asset('assets/plugins/select2/css/select2.min.css') }}" rel="stylesheet">
 @endsection
 @section('page-header')
     <!-- breadcrumb -->
     <div class="breadcrumb-header justify-content-between">
         <div class="my-auto">
             <div class="d-flex">
-                <h4 class="content-title mb-0 my-auto">{{__('dashboard.Settings')}}</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ {{__('dashboard.Sections')}}</span>
+                <h4 class="content-title mb-0 my-auto">{{ __('dashboard.Settings') }}</h4><span
+                    class="text-muted mt-1 tx-13 mr-2 mb-0">/ {{ __('dashboard.Sections') }}</span>
             </div>
         </div>
 
@@ -71,50 +73,48 @@
                     <div class="d-flex justify-content-between">
                         @can('add category')
                             <a class="modal-effect btn btn-outline-primary btn-buy " data-effect="effect-scale"
-                               data-toggle="modal" href="#modaldemo1"> {{__('dashboard.Add_Section')}}</a>
+                                data-toggle="modal" href="#modaldemo1"> {{ __('dashboard.Add_Section') }}</a>
                         @endcan
 
                     </div>
                 </div>
-
                 <div class="card-body">
 
                     <div class="table-responsive">
                         <table id="example1" class="table key-buttons text-md-nowrap " data-page-length='50'>
                             <thead>
-                            <tr>
-                                <th class="border-bottom-0">#</th>
-                                <th class="border-bottom-0"> {{__('invoices.Section')}}</th>
-                                <th class="border-bottom-0">{{__('invoices.Notes')}}</th>
-                                <th class="border-bottom-0">{{__('invoices.Actions')}}</th>
-                            </tr>
+                                <tr>
+                                    <th class="border-bottom-0">#</th>
+                                    <th class="border-bottom-0"> {{ __('invoices.Section') }}</th>
+                                    <th class="border-bottom-0">{{ __('invoices.Notes') }}</th>
+                                    <th class="border-bottom-0">{{ __('invoices.Actions') }}</th>
+                                </tr>
                             </thead>
                             <tbody>
-                            @foreach($sections as $section)
-                                <tr>
-                                    <td>{{$section -> id}}</td>
-                                    <td>{{$section -> section_name}}</td>
-                                    <td>{{$section -> description}}</td>
-                                    <td>
-                                        @can('edit category')
-                                            <a class="modal-effect btn btn-sm btn-info" data-effect="effect-scale"
-                                               data-id="{{ $section->id }}"
-                                               data-section_name="{{ $section->section_name }}"
-                                               data-description="{{ $section->description }}" data-toggle="modal"
-                                               href="#exampleModal2" title="تعديل"><i class="las la-pen"></i></a>
-                                        @endcan
+                                @foreach ($sections as $section)
+                                    <tr id="section-{{ $section->id }}">
+                                        <td>{{ $section->id }}</td>
+                                        <td>{{ $section->section_name }}</td>
+                                        <td>{{ $section->description }}</td>
+                                        <td>
+                                            @can('edit category')
+                                                <a class="modal-effect btn btn-sm btn-info" data-effect="effect-scale"
+                                                    data-id="{{ $section->id }}"
+                                                    data-section_name="{{ $section->section_name }}"
+                                                    data-description="{{ $section->description }}" data-toggle="modal"
+                                                    href="#exampleModal2" title="تعديل"><i class="las la-pen"></i></a>
+                                            @endcan
 
-                                        @can('delete category')
-                                            <a class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale"
-                                               data-id="{{ $section->id }}"
-                                               data-section_name="{{ $section->section_name }}"
-                                               data-toggle="modal" href="#modaldemo9" title="حذف"><i
-                                                    class="las la-trash"></i></a>
-                                        @endcan
+                                            @can('delete category')
+                                                <a class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale"
+                                                    data-id="{{ $section->id }}"
+                                                    data-section_name="{{ $section->section_name }}" data-toggle="modal"
+                                                    href="#modaldemo9" title="حذف"><i class="las la-trash"></i></a>
+                                            @endcan
 
-                                    </td>
-                                </tr>
-                            @endforeach
+                                        </td>
+                                    </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
@@ -130,27 +130,28 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content modal-content-demo">
                 <div class="modal-header">
-                    <h6 class="modal-title"> {{__('invoices.Section')}}</h6>
-                    <button aria-label="Close" class="close" data-dismiss="modal"
-                            type="button"><span aria-hidden="true">&times;</span></button>
+                    <h6 class="modal-title"> {{ __('invoices.Section') }}</h6>
+                    <button aria-label="Close" class="close" data-dismiss="modal" type="button"><span
+                            aria-hidden="true">&times;</span></button>
                 </div>
                 <div class="modal-body">
                     <form action="{{ route('sections.store') }}" method="post">
                         {{ csrf_field() }}
 
                         <div class="form-group">
-                            <label for="exampleInputEmail1"> {{__('invoices.Section')}}</label>
+                            <label for="exampleInputEmail1"> {{ __('invoices.Section') }}</label>
                             <input type="text" class="form-control" id="section_name" name="section_name">
                         </div>
 
                         <div class="form-group">
-                            <label for="exampleFormControlTextarea1">{{__('invoices.Notes')}}</label>
+                            <label for="exampleFormControlTextarea1">{{ __('invoices.Notes') }}</label>
                             <textarea class="form-control" id="description" name="description" rows="3"></textarea>
                         </div>
 
                         <div class="modal-footer">
-                            <button type="submit" class="btn btn-success">{{__('messages.Confirm')}}</button>
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">{{__('messages.Cancel')}}</button>
+                            <button type="submit" class="btn btn-success">{{ __('messages.Confirm') }}</button>
+                            <button type="button" class="btn btn-secondary"
+                                data-dismiss="modal">{{ __('messages.Cancel') }}</button>
                         </div>
                     </form>
                 </div>
@@ -160,11 +161,11 @@
     <!-- End Basic modal -->
     <!-- edit -->
     <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-         aria-hidden="true">
+        aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel"> {{__('dashboard.Edit_Section')}}</h5>
+                    <h5 class="modal-title" id="exampleModalLabel"> {{ __('dashboard.Edit_Section') }}</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -176,50 +177,60 @@
                         {{ csrf_field() }}
                         <div class="form-group">
                             <input type="hidden" name="id" id="id" value="">
-                            <label for="recipient-name" class="col-form-label"> {{__('invoices.Section')}}:</label>
+                            <label for="recipient-name" class="col-form-label"> {{ __('invoices.Section') }}:</label>
                             <input class="form-control" name="section_name" id="section_name" type="text">
                         </div>
                         <div class="form-group">
-                            <label for="message-text" class="col-form-label">{{__('invoices.Notes')}}:</label>
+                            <label for="message-text" class="col-form-label">{{ __('invoices.Notes') }}:</label>
                             <textarea class="form-control" id="description" name="description"></textarea>
                         </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary">{{__('messages.Confirm')}}</button>
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">{{__('messages.Cancel')}}</button>
+                    <button type="submit" class="btn btn-primary">{{ __('messages.Confirm') }}</button>
+                    <button type="button" class="btn btn-secondary"
+                        data-dismiss="modal">{{ __('messages.Cancel') }}</button>
                 </div>
                 </form>
             </div>
         </div>
     </div>
     <!-- End Edit -->
-  <!-- delete -->
-  <div class="modal fade" id="modaldemo9" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-  aria-hidden="true">
- <div class="modal-dialog" role="document">
-     <div class="modal-content">
-         <div class="modal-header">
-             <h5 class="modal-title"> {{__('dashboard.Delete_Section')}}</h5>
-             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                 <span aria-hidden="true">&times;</span>
-             </button>
-         </div>
-         <form action="{{route('sections.destroy', $section->id)}}" method="post">
-            {{ method_field('delete') }}
-            {{ csrf_field() }}
-             <div class="modal-body">
-                 <p>{{__('messages.Delete_Confirmation')}} </p><br>
-                 <input type="hidden" name="id" id="id" value="">
-                 <input class="form-control" name="section_name" id="section_name" type="text" readonly>
-             </div>
-             <div class="modal-footer">
-                 <button type="button" class="btn btn-secondary" data-dismiss="modal">{{__('messages.Cancel')}}</button>
-                 <button type="submit" class="btn btn-danger">{{__('invoices.Save')}}</button>
-             </div>
-         </form>
-     </div>
- </div>
-</div>
+
+    <!-- delete -->
+    <div class="modal fade" id="modaldemo9" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title"> {{ __('dashboard.Delete_Section') }}</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form id="deleteForm">
+                    <!-- CSRF Token (مطلوب للحماية) -->
+                    {{ csrf_field() }}
+                    <!-- لأن طلب الحذف يستخدم method DELETE -->
+                    {{ method_field('DELETE') }}
+                    <div class="modal-body">
+                        <p>{{ __('messages.Delete_Confirmation') }} </p><br>
+                        <input type="hidden" name="id" id="id">
+                        <input value="" class="form-control" name="section_name" id="section_name" type="text"
+                            readonly>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary"
+                            data-dismiss="modal">{{ __('messages.Cancel') }}</button>
+                        <button type="submit" class="btn btn-danger">{{ __('invoices.Save') }}</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    </div>
+    </div>
 
     <!-- Container closed -->
     </div>
@@ -228,28 +239,28 @@
 @endsection
 @section('js')
     <!-- Internal Data tables -->
-    <script src="{{URL::asset('assets/plugins/datatable/js/jquery.dataTables.min.js')}}"></script>
-    <script src="{{URL::asset('assets/plugins/datatable/js/dataTables.dataTables.min.js')}}"></script>
-    <script src="{{URL::asset('assets/plugins/datatable/js/dataTables.responsive.min.js')}}"></script>
-    <script src="{{URL::asset('assets/plugins/datatable/js/responsive.dataTables.min.js')}}"></script>
-    <script src="{{URL::asset('assets/plugins/datatable/js/jquery.dataTables.js')}}"></script>
-    <script src="{{URL::asset('assets/plugins/datatable/js/dataTables.bootstrap4.js')}}"></script>
-    <script src="{{URL::asset('assets/plugins/datatable/js/dataTables.buttons.min.js')}}"></script>
-    <script src="{{URL::asset('assets/plugins/datatable/js/buttons.bootstrap4.min.js')}}"></script>
-    <script src="{{URL::asset('assets/plugins/datatable/js/jszip.min.js')}}"></script>
-    <script src="{{URL::asset('assets/plugins/datatable/js/pdfmake.min.js')}}"></script>
-    <script src="{{URL::asset('assets/plugins/datatable/js/vfs_fonts.js')}}"></script>
-    <script src="{{URL::asset('assets/plugins/datatable/js/buttons.html5.min.js')}}"></script>
-    <script src="{{URL::asset('assets/plugins/datatable/js/buttons.print.min.js')}}"></script>
-    <script src="{{URL::asset('assets/plugins/datatable/js/buttons.colVis.min.js')}}"></script>
-    <script src="{{URL::asset('assets/plugins/datatable/js/dataTables.responsive.min.js')}}"></script>
-    <script src="{{URL::asset('assets/plugins/datatable/js/responsive.bootstrap4.min.js')}}"></script>
+    <script src="{{ URL::asset('assets/plugins/datatable/js/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ URL::asset('assets/plugins/datatable/js/dataTables.dataTables.min.js') }}"></script>
+    <script src="{{ URL::asset('assets/plugins/datatable/js/dataTables.responsive.min.js') }}"></script>
+    <script src="{{ URL::asset('assets/plugins/datatable/js/responsive.dataTables.min.js') }}"></script>
+    <script src="{{ URL::asset('assets/plugins/datatable/js/jquery.dataTables.js') }}"></script>
+    <script src="{{ URL::asset('assets/plugins/datatable/js/dataTables.bootstrap4.js') }}"></script>
+    <script src="{{ URL::asset('assets/plugins/datatable/js/dataTables.buttons.min.js') }}"></script>
+    <script src="{{ URL::asset('assets/plugins/datatable/js/buttons.bootstrap4.min.js') }}"></script>
+    <script src="{{ URL::asset('assets/plugins/datatable/js/jszip.min.js') }}"></script>
+    <script src="{{ URL::asset('assets/plugins/datatable/js/pdfmake.min.js') }}"></script>
+    <script src="{{ URL::asset('assets/plugins/datatable/js/vfs_fonts.js') }}"></script>
+    <script src="{{ URL::asset('assets/plugins/datatable/js/buttons.html5.min.js') }}"></script>
+    <script src="{{ URL::asset('assets/plugins/datatable/js/buttons.print.min.js') }}"></script>
+    <script src="{{ URL::asset('assets/plugins/datatable/js/buttons.colVis.min.js') }}"></script>
+    <script src="{{ URL::asset('assets/plugins/datatable/js/dataTables.responsive.min.js') }}"></script>
+    <script src="{{ URL::asset('assets/plugins/datatable/js/responsive.bootstrap4.min.js') }}"></script>
     <!--Internal  Datatable js -->
-    <script src="{{URL::asset('assets/js/table-data.js')}}"></script>
+    <script src="{{ URL::asset('assets/js/table-data.js') }}"></script>
 
 
     <script>
-        $('#exampleModal2').on('show.bs.modal', function (event) {
+        $('#exampleModal2').on('show.bs.modal', function(event) {
             var button = $(event.relatedTarget)
             var id = button.data('id')
             var section_name = button.data('section_name')
@@ -262,16 +273,40 @@
     </script>
 
     <script>
-        $('#modaldemo9').on('show.bs.modal', function (event) {
-            var button = $(event.relatedTarget)
-            var id = button.data('id')
-            var section_name = button.data('section_name')
-            var modal = $(this)
+        // عند فتح الـ modal
+        $('#modaldemo9').on('show.bs.modal', function(event) {
+            var button = $(event.relatedTarget); // الزر الذي ضغط عليه المستخدم
+            var id = button.data('id'); // جلب ID العنصر من data-id
+            var section_name = button.data('section_name'); // جلب section_name من data-section_name
+            var deleteSuccessMessage = @json(__('messages.Delete_successfully'));
+            var modal = $(this); // الإشارة إلى الـ modal الحالي
+
+            // تعبئة الحقول داخل الـ modal
             modal.find('.modal-body #id').val(id);
             modal.find('.modal-body #section_name').val(section_name);
-        })
+
+            // عند إرسال الفورمة
+            $('#deleteForm').on('submit', function(e) {
+                e.preventDefault(); // منع إعادة تحميل الصفحة
+
+                $.ajax({
+                    url: '/sections/' + id, // رابط الحذف، يعتمد على resource route
+                    type: 'POST', // لأن Laravel يدعم فقط PUT/PATCH/DELETE عبر POST
+                    data: {
+                        "_token": "{{ csrf_token() }}", // CSRF token للحماية
+                        "_method": "DELETE" // إرسال الحذف عبر method DELETE
+                    },
+                    success: function(response) {
+                        // عند النجاح
+                        $('#modaldemo9').modal('hide'); // إغلاق الـ modal
+                        $('#section-' + id)
+                    .remove(); // إزالة العنصر من الصفحة باستخدام ID العنصر
+                        toastr.success(deleteSuccessMessage); // عرض رسالة النجاح
+                    },
+
+                });
+            });
+        });
     </script>
 
 @endsection
-
-

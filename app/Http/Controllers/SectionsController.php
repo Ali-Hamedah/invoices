@@ -129,10 +129,10 @@ class SectionsController extends Controller
      * @param sections $sections
      * @return Response
      */
-    public function destroy(Request $request)
+    public function destroy($id)
     {
         // $id = $request -> id;
-        sections::find($request->id)->delete();
+        sections::find($id)->delete();
         return redirect()->back()->with(['delete' => __('messages.Delete_successfully')]);
     }
 }
